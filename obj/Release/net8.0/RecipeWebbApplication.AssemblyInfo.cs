@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-RecipeWebbApplication-acfbe90c-3813-4b22-b353-4cb6e989791f")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("RecipeWebbApplication")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77114e351914c40386f990a9eb38c2449ef62498")]
 [assembly: System.Reflection.AssemblyProductAttribute("RecipeWebbApplication")]
