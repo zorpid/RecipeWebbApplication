@@ -48,9 +48,16 @@ namespace RecipeWebbApplication.Controllers
         // GET: Recipes/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
-            ViewData["CreatedByUserId"] = new SelectList(_context.Users, "Id", "Id");
+            //  Populate Category dropdown only if categories exist
+            ViewData["CategoryId"] = _context.Categories.Any()
+                ? new SelectList(_context.Categories, "Id", "Name")
+                : null; // Don't set a dropdown if there are no categories
+
+            // Removed CreatedByUserId (should be automatically set in POST)
+
+            //  Populate Difficulty dropdown
             ViewBag.DifficultyList = new SelectList(Enum.GetValues(typeof(DifficultyLevel)));
+
             return View();
         }
 
@@ -59,18 +66,32 @@ namespace RecipeWebbApplication.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Instructions,PrepTimeMinutes,CookTimeMinutes,Servings,ImageUrl,Difficulty,CategoryId,CreatedByUserId,CreatedAt,UpdatedAt")] Recipe recipe)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Instructions,PrepTimeMinutes,CookTimeMinutes,Servings,ImageUrl,Difficulty,CategoryId")] Recipe recipe)
         {
-            if (ModelState.IsValid)
-            {
-                recipe.CreatedAt = DateTime.UtcNow;  // Set creation date
+            //if (ModelState.IsValid)
+            //{
+                // Automatically set timestamps
+                recipe.CreatedAt = DateTime.UtcNow;
+                recipe.UpdatedAt = DateTime.UtcNow;
+
+                //  Set CreatedByUserId (if users exist, otherwise allow null)
+                recipe.CreatedByUserId = null; // Or use _userManager.GetUserId(User) if authentication exists
+
+                //  Handle CategoryId (if it’s nullable)
+                if (recipe.CategoryId == null)
+                {
+                    recipe.CategoryId = 1; // Set to a default category (optional)
+                }
+
                 _context.Add(recipe);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
+            //}
+
+            //  Re-populate dropdowns if validation fails
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", recipe.CategoryId);
-            ViewData["CreatedByUserId"] = new SelectList(_context.Users, "Id", "Id", recipe.CreatedByUserId);
-            ViewBag.DifficultyList = new SelectList(Enum.GetValues(typeof(DifficultyLevel))); // Re-populate dropdown if validation fails
+            ViewBag.DifficultyList = new SelectList(Enum.GetValues(typeof(DifficultyLevel)));
+
             return View(recipe);
         }
 

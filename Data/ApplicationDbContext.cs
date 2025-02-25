@@ -40,6 +40,15 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             .WithMany(u => u.Reviews)
             .HasForeignKey(rr => rr.UserId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        // SEED DATA for Categories Table 
+        modelBuilder.Entity<Category>().HasData(
+            new Category { Id = 1, Name = "Breakfast" },
+            new Category { Id = 2, Name = "Lunch" },
+            new Category { Id = 3, Name = "Dinner" },
+            new Category { Id = 4, Name = "Dessert" },
+            new Category { Id = 5, Name = "Snack" }
+        );
     }
 }
 
