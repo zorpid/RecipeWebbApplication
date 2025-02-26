@@ -1,4 +1,4 @@
-﻿@model RecipeWebbApplication.Models.Recipe
+﻿@*  @model RecipeWebbApplication.Models.Recipe
 
 @{
     ViewData["Title"] = "Edit";
@@ -50,8 +50,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="Difficulty" class="control-label"></label>
-                <select asp-for="Difficulty" class="form-control"></select>
+                <select asp-for="Difficulty" asp-items="ViewBag.DifficultyList" class="form-control">
+                    <option value="">-- Select Difficulty --</option>
+                </select>
                 <span asp-validation-for="Difficulty" class="text-danger"></span>
+
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>
@@ -86,4 +89,124 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} *@
+
+@model RecipeWebbApplication.Models.Recipe
+
+@{
+    ViewData["Title"] = "Edit Recipe";
 }
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2>Edit Recipe - @Model.Name</h2>
+        <hr>
+
+        <!-- ✅ Main Edit Form -->
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <!-- Recipe Name -->
+            <div class="mb-3">
+                <label class="form-label">Recipe Name</label>
+                <input type="text" class="form-control" asp-for="Name">
+            </div>
+
+            <!-- Category -->
+            <div class="mb-3">
+                <label class="form-label">Category</label>
+                <select class="form-select" asp-for="CategoryId" asp-items="ViewBag.CategoryId"></select>
+            </div>
+
+            <!-- Image URL -->
+            <div class="mb-3">
+                <label class="form-label">Image URL</label>
+                <input type="text" class="form-control" asp-for="ImageUrl">
+            </div>
+
+            <!-- Prep Time -->
+            <div class="mb-3">
+                <label class="form-label">Preparation Time (Minutes)</label>
+                <input type="number" class="form-control" asp-for="PrepTimeMinutes">
+            </div>
+
+            <!-- Cook Time -->
+            <div class="mb-3">
+                <label class="form-label">Cooking Time (Minutes)</label>
+                <input type="number" class="form-control" asp-for="CookTimeMinutes">
+            </div>
+
+            <!-- Servings -->
+            <div class="mb-3">
+                <label class="form-label">Servings</label>
+                <input type="number" class="form-control" asp-for="Servings">
+            </div>
+
+            <!-- Difficulty -->
+            <div class="form-group">
+                <label asp-for="Difficulty" class="control-label"></label>
+                <select asp-for="Difficulty" asp-items="ViewBag.DifficultyList" class="form-control">
+                    <option value="">-- Select Difficulty --</option>
+                </select>
+                <span asp-validation-for="Difficulty" class="text-danger"></span>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" asp-for="Description"></textarea>
+            </div>
+
+            <!-- Instructions -->
+            <div class="mb-3">
+                <label class="form-label">Instructions</label>
+                <textarea class="form-control" asp-for="Instructions"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="@Url.Action("RecipeDisplay", "Recipes")" class="btn btn-secondary">Cancel</a>
+        </form>
+
+        <hr />
+
+        <!-- ✅ Add Ingredients Section -->
+        <h4>Add Ingredients</h4>
+        <form asp-action="AddIngredient" method="post" id="addIngredientForm">
+            <input type="hidden" name="recipeId" value="@Model.Id" />
+
+            <div class="mb-3">
+                <label for="ingredientName">Ingredient Name</label>
+                <input type="text" name="ingredientName" class="form-control" placeholder="Enter ingredient name" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="quantity">Quantity</label>
+                <input type="text" name="quantity" class="form-control" placeholder="e.g., 2 cups, 1 tbsp" required />
+            </div>
+
+            <button type="submit" class="btn btn-success">Add Ingredient</button>
+        </form>
+
+        <hr />
+
+        <!-- ✅ Display Added Ingredients -->
+        @if (Model.RecipeIngredients != null && Model.RecipeIngredients.Any())
+        {
+            <h5>Ingredients</h5>
+            <ul class="list-group">
+                @foreach (var ingredient in Model.RecipeIngredients)
+                {
+                    <li class="list-group-item">
+                        @ingredient.Quantity - @ingredient.Ingredient.Name
+                        <form asp-action="RemoveIngredient" method="post" class="d-inline">
+                            <input type="hidden" name="recipeId" value="@Model.Id" />
+                            <input type="hidden" name="ingredientId" value="@ingredient.IngredientId" />
+                            <button type="submit" class="btn btn-danger btn-sm float-end">Remove</button>
+                        </form>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</div>

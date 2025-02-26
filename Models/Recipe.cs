@@ -36,13 +36,13 @@ namespace RecipeWebbApplication.Models
         public ApplicationUser CreatedByUser { get; set; }
 
         // Many-to-Many Relationship: Recipes ↔ Ingredients
-        public List<RecipeIngredient> RecipeIngredients { get; set; }
+        public List<RecipeIngredient>? RecipeIngredients { get; set; }
 
         // Many-to-Many Relationship: Recipes ↔ Tags (e.g., Vegan, Keto)
-        public List<RecipeTag> RecipeTags { get; set; }
+        public List<RecipeTag>? RecipeTags { get; set; }
 
         // Ratings & Reviews
-        public List<RecipeReview> RecipeReviews { get; set; }
+        public List<RecipeReview>? RecipeReviews { get; set; }
 
         // Date Created & Updated
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

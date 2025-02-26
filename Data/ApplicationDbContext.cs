@@ -20,15 +20,25 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         base.OnModelCreating(modelBuilder);
 
-        // Many-to-Many for Recipe ↔ Ingredients
+        // ✅ Many-to-Many for Recipe ↔ Ingredients
         modelBuilder.Entity<RecipeIngredient>()
             .HasKey(ri => new { ri.RecipeId, ri.IngredientId });
+
+        modelBuilder.Entity<RecipeIngredient>()
+            .HasOne(ri => ri.Recipe)
+            .WithMany(r => r.RecipeIngredients)
+            .HasForeignKey(ri => ri.RecipeId);
+
+        modelBuilder.Entity<RecipeIngredient>()
+            .HasOne(ri => ri.Ingredient)
+            .WithMany(i => i.RecipeIngredients)
+            .HasForeignKey(ri => ri.IngredientId);
 
         // Many-to-Many for Recipe ↔ Tags
         modelBuilder.Entity<RecipeTag>()
             .HasKey(rt => new { rt.RecipeId, rt.TagId });
 
-        // Define relationships
+        //  Define relationships
         modelBuilder.Entity<Recipe>()
             .HasOne(r => r.CreatedByUser)
             .WithMany(u => u.Recipes)
