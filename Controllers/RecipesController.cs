@@ -121,7 +121,7 @@ namespace RecipeWebbApplication.Controllers
             }
 
             var recipe = await _context.Recipes
-                .Include(r => r.Category) // Ensure Category is included
+                .Include(r => r.Category) // Ensure Category is included  
                 .Include(r => r.RecipeIngredients)
                 .ThenInclude(ri => ri.Ingredient) // Include ingredients
                 .FirstOrDefaultAsync(r => r.Id == id);
