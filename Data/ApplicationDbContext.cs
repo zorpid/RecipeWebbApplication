@@ -36,7 +36,17 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
         // Many-to-Many for Recipe ↔ Tags
         modelBuilder.Entity<RecipeTag>()
-            .HasKey(rt => new { rt.RecipeId, rt.TagId });
+        .HasKey(rt => new { rt.RecipeId, rt.TagId });
+
+        modelBuilder.Entity<RecipeTag>()
+            .HasOne(rt => rt.Recipe)
+            .WithMany(r => r.RecipeTags)
+            .HasForeignKey(rt => rt.RecipeId);
+
+        modelBuilder.Entity<RecipeTag>()
+            .HasOne(rt => rt.Tag)
+            .WithMany(t => t.RecipeTags)
+            .HasForeignKey(rt => rt.TagId);
 
         //  Define relationships
         modelBuilder.Entity<Recipe>()

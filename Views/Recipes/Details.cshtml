@@ -47,6 +47,22 @@
 
         <hr>
 
+        <!-- ✅ Tags Section -->
+        @if (Model.RecipeTags != null && Model.RecipeTags.Any())
+        {
+            <div class="mt-3">
+                <h4>Tags</h4>
+                <div>
+                    @foreach (var recipeTag in Model.RecipeTags)
+                    {
+                        <span class="badge bg-secondary me-1">#@recipeTag.Tag.Name</span>
+                    }
+                </div>
+            </div>
+        }
+
+        <hr>
+
         <!-- Reviews -->
         @if (Model.RecipeReviews?.Count > 0)
         {
@@ -72,4 +88,3 @@
         <a href="@Url.Action("Index", "Recipes")" class="btn btn-secondary mt-3">Back to Recipes</a>
     </div>
 </div>
-

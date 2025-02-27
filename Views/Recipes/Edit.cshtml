@@ -50,12 +50,11 @@
             </div>
 
             <!-- Difficulty -->
-            <div class="form-group">
-                <label asp-for="Difficulty" class="control-label"></label>
+            <div class="mb-3">
+                <label class="form-label">Difficulty</label>
                 <select asp-for="Difficulty" asp-items="ViewBag.DifficultyList" class="form-control">
                     <option value="">-- Select Difficulty --</option>
                 </select>
-                <span asp-validation-for="Difficulty" class="text-danger"></span>
             </div>
 
             <!-- Description -->
@@ -70,6 +69,20 @@
                 <textarea class="form-control" asp-for="Instructions"></textarea>
             </div>
 
+            <!-- ✅ Tags Selection (Now Inside the Form) -->
+            <div class="mb-3">
+                <label class="form-label">Tags</label>
+                <div class="form-check">
+                    @foreach (var tag in ViewBag.AvailableTags as List<Tag>)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="SelectedTagIds" value="@tag.Id"
+                            @(Model.RecipeTags.Any(rt => rt.TagId == tag.Id) ? "checked" : "") />
+                            <label class="form-check-label">@tag.Name</label>
+                        </div>
+                    }
+                </div>
+            </div>
 
 
             <!-- Submit Button -->
@@ -81,7 +94,7 @@
 
         <!-- ✅ Add Ingredients Section -->
         <h4>Add Ingredients</h4>
-        <form asp-action="AddIngredient" method="post" id="addIngredientForm">
+        <form asp-action="AddIngredient" method="post">
             <input type="hidden" name="recipeId" value="@Model.Id" />
 
             <div class="mb-3">

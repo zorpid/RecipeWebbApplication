@@ -11,7 +11,7 @@ namespace RecipeWebbApplication.Models
         [StringLength(50)]
         public string Name { get; set; }
 
-        public List<RecipeTag> RecipeTags { get; set; }
+        public List<RecipeTag>? RecipeTags { get; set; }
     }
 
 }
