@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RecipeWebbApplication.Models
 {
@@ -13,7 +15,6 @@ namespace RecipeWebbApplication.Models
 
         public string Description { get; set; }
 
-    
         public string Instructions { get; set; }
 
         public int PrepTimeMinutes { get; set; }
@@ -47,6 +48,9 @@ namespace RecipeWebbApplication.Models
         // Date Created & Updated
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
+
+        // Add this property to handle the selected tags
+        public List<int>? SelectedTagIds { get; set; }
     }
 
     // Difficulty Enum
@@ -56,5 +60,4 @@ namespace RecipeWebbApplication.Models
         Medium,
         Hard
     }
-
 }

@@ -59,6 +59,16 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             new Category { Id = 4, Name = "Dessert" },
             new Category { Id = 5, Name = "Snack" }
         );
+
+        // Seed Tags
+        modelBuilder.Entity<Tag>().HasData(
+            new Tag { Id = 1, Name = "Vegetarian" },
+            new Tag { Id = 2, Name = "Gluten-Free" },
+            new Tag { Id = 3, Name = "Vegan" },
+            new Tag { Id = 4, Name = "Kosher" },
+            new Tag { Id = 5, Name = "Spicy" },
+            new Tag { Id = 6, Name = "Halal" }
+        );
     }
 }
 
