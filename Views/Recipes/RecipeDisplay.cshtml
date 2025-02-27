@@ -1,0 +1,26 @@
+﻿@model IEnumerable<RecipeWebbApplication.Models.Recipe>
+
+@{
+    ViewData["Title"] = "Recipe Display";
+}
+
+<h2 class="text-center">Recipe Display</h2>
+
+<div class="row">
+    @foreach (var recipe in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="@recipe.ImageUrl" class="card-img-top" alt="@recipe.Name" style="height: 250px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">@recipe.Name</h5>
+                    <p class="card-text">@recipe.Description</p>
+                    <p><strong>Difficulty:</strong> @recipe.Difficulty</p>
+                    <p><strong>Category:</strong> @(recipe.Category != null ? recipe.Category.Name : "Uncategorized")</p>
+                    <a href="@Url.Action("Details", "Recipes", new { id = recipe.Id })" class="btn btn-primary">View Details</a>
+                    <a href="@Url.Action("Edit", "Recipes", new { id = recipe.Id })" class="btn btn-warning">Edit</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

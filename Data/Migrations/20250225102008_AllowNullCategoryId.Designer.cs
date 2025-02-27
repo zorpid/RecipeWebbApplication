@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RecipeWebbApplication.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250225102008_AllowNullCategoryId")]
+    partial class AllowNullCategoryId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -243,33 +246,6 @@ namespace RecipeWebbApplication.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Breakfast"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Lunch"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Dinner"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Dessert"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Snack"
-                        });
                 });
 
             modelBuilder.Entity("RecipeWebbApplication.Models.Ingredient", b =>

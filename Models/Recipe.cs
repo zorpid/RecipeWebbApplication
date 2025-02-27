@@ -11,10 +11,9 @@ namespace RecipeWebbApplication.Models
         [StringLength(255)]
         public string Name { get; set; }
 
-        [Required]
         public string Description { get; set; }
 
-        [Required]
+    
         public string Instructions { get; set; }
 
         public int PrepTimeMinutes { get; set; }
@@ -29,21 +28,21 @@ namespace RecipeWebbApplication.Models
         public DifficultyLevel Difficulty { get; set; }
 
         // Category (e.g., Breakfast, Lunch, Dinner, Dessert)
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public Category Category { get; set; }
 
         // Foreign Key to User (Creator of the recipe)
-        public string CreatedByUserId { get; set; }
+        public string? CreatedByUserId { get; set; }
         public ApplicationUser CreatedByUser { get; set; }
 
         // Many-to-Many Relationship: Recipes ↔ Ingredients
-        public List<RecipeIngredient> RecipeIngredients { get; set; }
+        public List<RecipeIngredient>? RecipeIngredients { get; set; }
 
         // Many-to-Many Relationship: Recipes ↔ Tags (e.g., Vegan, Keto)
-        public List<RecipeTag> RecipeTags { get; set; }
+        public List<RecipeTag>? RecipeTags { get; set; }
 
         // Ratings & Reviews
-        public List<RecipeReview> RecipeReviews { get; set; }
+        public List<RecipeReview>? RecipeReviews { get; set; }
 
         // Date Created & Updated
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

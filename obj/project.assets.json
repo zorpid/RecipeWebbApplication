@@ -8358,23 +8358,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Johan\\.nuget\\packages\\": {},
+    "C:\\Users\\Rezz\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\RecipeWebbApplication.csproj",
+      "projectUniqueName": "C:\\Users\\Rezz\\Desktop\\C#skola\\RecipeWebbApplication\\RecipeWebbApplication.csproj",
       "projectName": "RecipeWebbApplication",
-      "projectPath": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\RecipeWebbApplication.csproj",
-      "packagesPath": "C:\\Users\\Johan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\obj\\",
+      "projectPath": "C:\\Users\\Rezz\\Desktop\\C#skola\\RecipeWebbApplication\\RecipeWebbApplication.csproj",
+      "packagesPath": "C:\\Users\\Rezz\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Rezz\\Desktop\\C#skola\\RecipeWebbApplication\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Johan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Rezz\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -8399,9 +8399,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
+        "auditMode": "all"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -8455,16 +8455,20 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
   "logs": [
     {
-      "code": "Undefined",
+      "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+      "message": "Package 'System.Text.Json' 7.0.3 has a known high severity vulnerability, https://github.com/advisories/GHSA-hh2w-p6rv-4g7w",
+      "libraryId": "System.Text.Json",
+      "targetGraphs": [
+        "net8.0"
+      ]
     }
   ]
 }

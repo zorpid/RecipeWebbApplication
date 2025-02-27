@@ -1,4 +1,6 @@
-﻿namespace RecipeWebbApplication.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RecipeWebbApplication.Models
 {
     // Junction Table: Recipe ↔ Ingredients
     public class RecipeIngredient
