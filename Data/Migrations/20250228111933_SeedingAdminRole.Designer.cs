@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RecipeWebbApplication.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250225105038_SeedCategories")]
-    partial class SeedCategories
+    [Migration("20250228111933_SeedingAdminRole")]
+    partial class SeedingAdminRole
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -336,6 +336,9 @@ namespace RecipeWebbApplication.Data.Migrations
                     b.Property<int>("PrepTimeMinutes")
                         .HasColumnType("int");
 
+                    b.Property<string>("SelectedTagIds")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Servings")
                         .HasColumnType("int");
 
@@ -436,6 +439,38 @@ namespace RecipeWebbApplication.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Vegetarian"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Gluten-Free"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Vegan"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Kosher"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Spicy"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Halal"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

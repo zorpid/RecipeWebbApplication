@@ -5,14 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using RecipeWebbApplication.Data;
 
 #nullable disable
 
 namespace RecipeWebbApplication.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250225105038_SeedCategories")]
-    partial class SeedCategories
+    [Migration("20250228120020_SeedRoles")]
+    partial class SeedRoles
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,7 +77,7 @@ namespace RecipeWebbApplication.Data.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -101,7 +102,7 @@ namespace RecipeWebbApplication.Data.Migrations
                     b.ToTable("AspNetUserClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasMaxLength(128)
@@ -125,7 +126,7 @@ namespace RecipeWebbApplication.Data.Migrations
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -140,7 +141,7 @@ namespace RecipeWebbApplication.Data.Migrations
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -336,6 +337,9 @@ namespace RecipeWebbApplication.Data.Migrations
                     b.Property<int>("PrepTimeMinutes")
                         .HasColumnType("int");
 
+                    b.Property<string>("SelectedTagIds")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Servings")
                         .HasColumnType("int");
 
@@ -436,6 +440,38 @@ namespace RecipeWebbApplication.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Vegetarian"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Gluten-Free"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Vegan"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Kosher"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Spicy"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Halal"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -447,7 +483,7 @@ namespace RecipeWebbApplication.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.HasOne("RecipeWebbApplication.Models.ApplicationUser", null)
                         .WithMany()
@@ -456,7 +492,7 @@ namespace RecipeWebbApplication.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.HasOne("RecipeWebbApplication.Models.ApplicationUser", null)
                         .WithMany()
@@ -465,7 +501,7 @@ namespace RecipeWebbApplication.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
@@ -480,7 +516,7 @@ namespace RecipeWebbApplication.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.ApplicationUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.HasOne("RecipeWebbApplication.Models.ApplicationUser", null)
                         .WithMany()

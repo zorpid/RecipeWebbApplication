@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using RecipeWebbApplication.Data;
 using RecipeWebbApplication.Models;
 
 namespace RecipeWebbApplication.Controllers
