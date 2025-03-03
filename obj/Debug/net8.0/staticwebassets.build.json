@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "E0XpUxDKEPzmR8apSwq3QzAYrWSHvnQ9yIxOgBCZ9VA=",
+  "Hash": "wv+h9j279g8yLz9gE8OLIaaOlNCsruD0QRHv511kDUg=",
   "Source": "RecipeWebbApplication",
   "BasePath": "_content/RecipeWebbApplication",
   "Mode": "Default",
@@ -1359,6 +1359,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\wwwroot\\img\\logo.png",
+      "SourceId": "RecipeWebbApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\wwwroot\\",
+      "BasePath": "_content/RecipeWebbApplication",
+      "RelativePath": "img/logo#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "y5gx35slwj",
+      "Integrity": "6hjpYhTmPxK1kHfH0x8S7F228F/UsintYYDOe4GKJDk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\logo.png"
     },
     {
       "Identity": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\wwwroot\\js\\site.js",
@@ -4961,6 +4982,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s="
+        }
+      ]
+    },
+    {
+      "Route": "img/logo.png",
+      "AssetFile": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\wwwroot\\img\\logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "19178"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6hjpYhTmPxK1kHfH0x8S7F228F/UsintYYDOe4GKJDk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 03 Mar 2025 12:52:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6hjpYhTmPxK1kHfH0x8S7F228F/UsintYYDOe4GKJDk="
+        }
+      ]
+    },
+    {
+      "Route": "img/logo.y5gx35slwj.png",
+      "AssetFile": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\wwwroot\\img\\logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "19178"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6hjpYhTmPxK1kHfH0x8S7F228F/UsintYYDOe4GKJDk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 03 Mar 2025 12:52:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "y5gx35slwj"
+        },
+        {
+          "Name": "label",
+          "Value": "img/logo.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6hjpYhTmPxK1kHfH0x8S7F228F/UsintYYDOe4GKJDk="
         }
       ]
     },

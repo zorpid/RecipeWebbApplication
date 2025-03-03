@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+<h2>Role Management</h2>
+<form method="post" action="@Url.Action("CreateRole", "Admin")">
+    <input type="text" name="roleName" placeholder="Enter Role Name" required />
+    <button type="submit">Create Role</button>
+</form>
+
+<ul>
+    @foreach (var role in Model)
+    {
+        <li>@role.Name</li>
+    }
+</ul>

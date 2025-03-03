@@ -243,7 +243,7 @@ namespace RecipeWebbApplication.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -288,7 +288,7 @@ namespace RecipeWebbApplication.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ingredients");
+                    b.ToTable("Ingredients", (string)null);
                 });
 
             modelBuilder.Entity("RecipeWebbApplication.Models.Recipe", b =>
@@ -349,7 +349,7 @@ namespace RecipeWebbApplication.Data.Migrations
 
                     b.HasIndex("CreatedByUserId");
 
-                    b.ToTable("Recipes");
+                    b.ToTable("Recipes", (string)null);
                 });
 
             modelBuilder.Entity("RecipeWebbApplication.Models.RecipeIngredient", b =>
@@ -368,7 +368,7 @@ namespace RecipeWebbApplication.Data.Migrations
 
                     b.HasIndex("IngredientId");
 
-                    b.ToTable("RecipeIngredients");
+                    b.ToTable("RecipeIngredients", (string)null);
                 });
 
             modelBuilder.Entity("RecipeWebbApplication.Models.RecipeReview", b =>
@@ -403,7 +403,7 @@ namespace RecipeWebbApplication.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RecipeReviews");
+                    b.ToTable("RecipeReviews", (string)null);
                 });
 
             modelBuilder.Entity("RecipeWebbApplication.Models.RecipeTag", b =>
@@ -418,7 +418,7 @@ namespace RecipeWebbApplication.Data.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("RecipeTags");
+                    b.ToTable("RecipeTags", (string)null);
                 });
 
             modelBuilder.Entity("RecipeWebbApplication.Models.Tag", b =>
@@ -436,7 +436,7 @@ namespace RecipeWebbApplication.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
 
                     b.HasData(
                         new

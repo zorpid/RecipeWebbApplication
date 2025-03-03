@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ApplicationUser>
+
+<h2>User Management</h2>
+<table class="table">
+    <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.FullName</td>
+            <td>@user.Email</td>
+            <td>
+                @if (ViewBag.UserRoles.ContainsKey(user.Id))
+                {
+                    @foreach (var role in ViewBag.UserRoles[user.Id])
+                    {
+                        <span class="text-dark">@role</span>
+                    }
+                }
+                else
+                {
+                    <span class="text-dark">No Role</span>
+                }
+            </td>
+            <td>
+                <a href="@Url.Action("AssignRole", "Admin", new { id = user.Id })">Assign Role</a>
+            </td>
+        </tr>
+    }
+</table>

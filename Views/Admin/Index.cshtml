@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h1>Admin Panel</h1>
+<ul>
+    <li><a href="@Url.Action("UserManagement", "Admin")">Manage Users</a></li>
+    <li><a href="@Url.Action("RoleManagement", "Admin")">Manage Roles</a></li>
+    <li><a href="@Url.Action("RecipeManagement", "Admin")">Manage Recipes</a></li>
+</ul>

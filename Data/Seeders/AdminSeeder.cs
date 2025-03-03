@@ -9,6 +9,7 @@ namespace RecipeWebbApplication.Data.Seeders
         {
             string adminEmail = "admin@admin.com";
             string adminPassword = "Admin!123"; // Change this!
+            string FullName = "Admin User"; // ✅ Provide a valid value
 
             // Ensure the Admin role exists
             string adminRole = "Admin";
