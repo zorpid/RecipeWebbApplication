@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using RecipeWebbApplication.Data;
 using RecipeWebbApplication.Models;
 
@@ -19,14 +20,38 @@ namespace RecipeWebbApplication.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> RecipeDisplay()
+        public async Task<IActionResult> RecipeDisplay(int? categoryId, int? tagId)
         {
-            var recipes = await _context.Recipes
-                .Include(r => r.Category) // Include category details
-                .ToListAsync();
+            var recipes = _context.Recipes
+                .Include(r => r.Category)
+                .Include(r => r.RecipeTags)
+                    .ThenInclude(rt => rt.Tag)
+                .AsQueryable();
 
-            return View(recipes); // This will now look for a RecipeDisplay.cshtml view
+            if (categoryId.HasValue)
+            {
+                recipes = recipes.Where(r => r.CategoryId == categoryId);
+                ViewBag.CategoryName = _context.Categories
+                    .Where(c => c.Id == categoryId)
+                    .Select(c => c.Name)
+                    .FirstOrDefault();
+            }
+
+            if (tagId.HasValue)
+            {
+                recipes = recipes.Where(r => r.RecipeTags.Any(rt => rt.TagId == tagId));
+                ViewBag.TagName = _context.Tags
+                    .Where(t => t.Id == tagId)
+                    .Select(t => t.Name)
+                    .FirstOrDefault();
+            }
+
+            ViewBag.Categories = await _context.Categories.ToListAsync();
+            ViewBag.Tags = await _context.Tags.ToListAsync();
+
+            return View(await recipes.ToListAsync());
         }
+
 
         // GET: Recipes
         public async Task<IActionResult> Index()
@@ -66,56 +91,115 @@ namespace RecipeWebbApplication.Controllers
 
 
 
-        //// GET: Recipes/Create
+        // GET: Recipes/Create
         public IActionResult Create()
         {
-            //  Populate Category dropdown only if categories exist
+            var recipe = new Recipe
+            {
+                RecipeIngredients = new List<RecipeIngredient>(), // Ensure it's initialized
+                RecipeTags = new List<RecipeTag>() // Ensure it's initialized
+            };
+
+            // Populate Category dropdown only if categories exist
             ViewData["CategoryId"] = _context.Categories.Any()
                 ? new SelectList(_context.Categories, "Id", "Name")
-                : null; // Don't set a dropdown if there are no categories
+                : null;
 
-            // Removed CreatedByUserId (should be automatically set in POST)
-
-            //  Populate Difficulty dropdown
+            // Populate Difficulty dropdown
             ViewBag.DifficultyList = new SelectList(Enum.GetValues(typeof(DifficultyLevel)));
 
-            return View();
+           
+            // ✅ Ensure Tags Are Loaded
+            var availableTags = _context.Tags.ToList();
+            ViewBag.AvailableTags = availableTags ?? new List<Tag>(); // Prevents null error
+
+
+            // Ensure a temporary ingredient list exists
+            ViewBag.TempIngredients = new List<RecipeIngredient>();
+
+            return View(recipe);
         }
 
         // POST: Recipes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Instructions,PrepTimeMinutes,CookTimeMinutes,Servings,ImageUrl,Difficulty,CategoryId")] Recipe recipe)
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Create(Recipe recipe, List<string> IngredientNames, List<string> IngredientQuantities)
+{
+    try
+    {
+        // ✅ Validate IngredientNames list
+        if (IngredientNames == null || IngredientNames.Count == 0)
         {
-            //if (ModelState.IsValid)
-            //{
-            // Automatically set timestamps
-            recipe.CreatedAt = DateTime.UtcNow;
-            recipe.UpdatedAt = DateTime.UtcNow;
+            Console.WriteLine("IngredientNames is null or empty.");
+            return BadRequest("Ingredients list cannot be empty.");
+        }
 
-            //  Set CreatedByUserId (if users exist, otherwise allow null)
-            recipe.CreatedByUserId = null; // Or use _userManager.GetUserId(User) if authentication exists
+        // ✅ Validate that IngredientNames and IngredientQuantities match
+        if (IngredientQuantities == null || IngredientNames.Count != IngredientQuantities.Count)
+        {
+            Console.WriteLine("IngredientNames and IngredientQuantities count mismatch.");
+            return BadRequest("Ingredient names and quantities do not match.");
+        }
 
-            //  Handle CategoryId (if it’s nullable)
-            if (recipe.CategoryId == null)
+        recipe.CreatedAt = DateTime.UtcNow;
+        recipe.UpdatedAt = DateTime.UtcNow;
+        recipe.RecipeIngredients = new List<RecipeIngredient>();
+
+        for (int i = 0; i < IngredientNames.Count; i++)
+        {
+            string ingredientName = IngredientNames[i]?.Trim(); // ✅ Trim to remove spaces
+            string ingredientQuantity = IngredientQuantities[i]?.Trim();
+
+            if (string.IsNullOrEmpty(ingredientName) || string.IsNullOrEmpty(ingredientQuantity))
             {
-                recipe.CategoryId = 1; // Set to a default category (optional)
+                Console.WriteLine($"Skipping empty ingredient at index {i}");
+                continue; // Skip invalid values
             }
 
-            _context.Add(recipe);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-            //}
+            Console.WriteLine($"Processing ingredient: {ingredientName} (Quantity: {ingredientQuantity})");
 
-            //  Re-populate dropdowns if validation fails
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", recipe.CategoryId);
-            ViewBag.DifficultyList = new SelectList(Enum.GetValues(typeof(DifficultyLevel)));
+            // ✅ Fetch ingredient from DB or create new one
+            var ingredient = await _context.Ingredients
+                .FirstOrDefaultAsync(i => i.Name == ingredientName);
 
-            return View(recipe);
+            if (ingredient == null)
+            {
+                Console.WriteLine($"Ingredient '{ingredientName}' not found. Creating a new one.");
+                ingredient = new Ingredient { Name = ingredientName };
+                _context.Ingredients.Add(ingredient);
+                await _context.SaveChangesAsync(); // ✅ Save to get an ID
+            }
+
+            // ✅ Attach ingredient to recipe
+            recipe.RecipeIngredients.Add(new RecipeIngredient
+            {
+                RecipeId = recipe.Id,  // ✅ Ensure recipe ID is set
+                IngredientId = ingredient.Id,
+                Quantity = ingredientQuantity
+            });
         }
-        /// testssssssssssssssss
+
+        _context.Add(recipe);
+        await _context.SaveChangesAsync();
+        Console.WriteLine("Recipe and ingredients saved successfully!");
+
+        return RedirectToAction(nameof(Index));
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Exception in Create method: {ex.Message}");
+        return StatusCode(500, "An internal error occurred.");
+    }
+}
+
+
+
+
+
+
+
         /// 
 
         // GET: Recipes/Create
@@ -436,37 +520,61 @@ namespace RecipeWebbApplication.Controllers
             return _context.Recipes.Any(e => e.Id == id);
         }
         [HttpPost]
-        public async Task<IActionResult> AddIngredient(int recipeId, string ingredientName, string quantity)
+        public async Task<IActionResult> AddIngredient(int? recipeId, string ingredientName, string quantity)
         {
             if (string.IsNullOrEmpty(ingredientName) || string.IsNullOrEmpty(quantity))
             {
                 return BadRequest("Ingredient name and quantity are required.");
             }
 
-            // Check if the ingredient already exists
+            // Check if the ingredient already exists in the database
             var ingredient = await _context.Ingredients.FirstOrDefaultAsync(i => i.Name == ingredientName);
 
             if (ingredient == null)
             {
-                // Create new ingredient if it doesn't exist
+                // If ingredient does not exist, create a new one
                 ingredient = new Ingredient { Name = ingredientName };
                 _context.Ingredients.Add(ingredient);
                 await _context.SaveChangesAsync();
             }
 
-            // Add the relationship
-            var recipeIngredient = new RecipeIngredient
+            // Check if we're adding ingredients to an existing recipe (Edit Mode)
+            if (recipeId != null && recipeId > 0)
             {
-                RecipeId = recipeId,
-                IngredientId = ingredient.Id,
+                var existingRecipe = await _context.Recipes
+                    .Include(r => r.RecipeIngredients)
+                    .FirstOrDefaultAsync(r => r.Id == recipeId);
+
+                if (existingRecipe == null)
+                {
+                    return NotFound();
+                }
+
+                // Add ingredient to the recipe
+                existingRecipe.RecipeIngredients.Add(new RecipeIngredient
+                {
+                    RecipeId = existingRecipe.Id,
+                    IngredientId = ingredient.Id,
+                    Quantity = quantity
+                });
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Edit", new { id = recipeId }); // Redirect back to Edit
+            }
+
+            // If we're in Create mode, temporarily store the ingredients (Session or ViewBag)
+            var tempIngredients = ViewBag.TempIngredients as List<RecipeIngredient> ?? new List<RecipeIngredient>();
+
+            tempIngredients.Add(new RecipeIngredient
+            {
+                Ingredient = ingredient, // Associate with newly created ingredient
                 Quantity = quantity
-            };
+            });
 
-            _context.RecipeIngredients.Add(recipeIngredient);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction("Edit", new { id = recipeId });
+            ViewBag.TempIngredients = tempIngredients; // Store temporarily
+            return RedirectToAction("Create"); // Redirect back to Create
         }
+
 
         [HttpPost]
         public async Task<IActionResult> RemoveIngredient(int recipeId, int ingredientId)

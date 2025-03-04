@@ -8358,23 +8358,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Johan\\.nuget\\packages\\": {},
+    "C:\\Users\\zorpi\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\RecipeWebbApplication.csproj",
+      "projectUniqueName": "C:\\Users\\zorpi\\Desktop\\ReceptApp\\RecipeWebbApplication\\RecipeWebbApplication.csproj",
       "projectName": "RecipeWebbApplication",
-      "projectPath": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\RecipeWebbApplication.csproj",
-      "packagesPath": "C:\\Users\\Johan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\obj\\",
+      "projectPath": "C:\\Users\\zorpi\\Desktop\\ReceptApp\\RecipeWebbApplication\\RecipeWebbApplication.csproj",
+      "packagesPath": "C:\\Users\\zorpi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\zorpi\\Desktop\\ReceptApp\\RecipeWebbApplication\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Johan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\zorpi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

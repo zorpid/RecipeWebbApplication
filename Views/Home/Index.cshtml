@@ -2,7 +2,61 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Hero Section -->
+<div class="container-fluid text-center bg-light py-5">
+    <h1 class="display-3">🍽️ Welcome to Recipe Hub!</h1>
+    <p class="lead">Discover & Share Amazing Recipes with the World</p>
+    <a href="@Url.Action("RecipeDisplay", "Recipes")" class="btn btn-primary btn-lg">Browse Recipes</a>
+    <a href="@Url.Action("Create", "Recipes")" class="btn btn-success btn-lg">Add Your Own Recipe</a>
 </div>
+
+<!-- Featured Recipes Section -->
+<div class="container mt-5">
+    <h2 class="text-center">🔥 Featured Recipes</h2>
+    <div class="row">
+        @foreach (var recipe in ViewBag.FeaturedRecipes)
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    <img src="@recipe.ImageUrl" class="card-img-top" alt="@recipe.Name" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@recipe.Name</h5>
+                        <p class="card-text">@recipe.Description.Substring(0, Math.Min(100, recipe.Description.Length))...</p>
+                        <a href="@Url.Action("Details", "Recipes", new { id = recipe.Id })" class="btn btn-primary">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Categories Section -->
+<div class="container mt-5">
+    <h2 class="text-center">🍽️ Recipe Categories</h2>
+    <div class="d-flex flex-wrap justify-content-center">
+        @foreach (var category in ViewBag.Categories)
+        {
+            <a href="@Url.Action("RecipeDisplay", "Recipes", new { categoryId = category.Id })" class="btn btn-outline-primary m-2">
+                @category.Name
+            </a>
+        }
+    </div>
+</div>
+
+<!-- Popular Tags -->
+<div class="container mt-5">
+    <h2 class="text-center">🏷️ Popular Tags</h2>
+    <div class="d-flex flex-wrap justify-content-center">
+        @foreach (var tag in ViewBag.PopularTags)
+        {
+            <a href="@Url.Action("RecipeDisplay", "Recipes", new { tagId = tag.Id })" class="btn btn-outline-secondary m-1">
+                #@tag.Name
+            </a>
+        }
+    </div>
+</div>
+
+<!-- Footer Section -->
+<footer class="bg-dark text-white text-center py-4 mt-5">
+    <p>&copy; @DateTime.Now.Year RecipeHub - All Rights Reserved</p>
+</footer>

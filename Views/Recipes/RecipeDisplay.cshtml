@@ -6,17 +6,69 @@
 
 <h2 class="text-center">Recipe Display</h2>
 
+<!-- Display Selected Category or Tag -->
+@if (!string.IsNullOrEmpty(ViewBag.CategoryName))
+{
+    <h4 class="text-center">Showing recipes in category: <span class="text-primary">@ViewBag.CategoryName</span></h4>
+}
+@if (!string.IsNullOrEmpty(ViewBag.TagName))
+{
+    <h4 class="text-center">Showing recipes with tag: <span class="text-success">@ViewBag.TagName</span></h4>
+}
+
+<hr>
+
+<!-- Filter Options -->
+<div class="mb-3">
+    <h5>Filter by Category:</h5>
+    <ul class="list-inline">
+        @foreach (var category in ViewBag.Categories)
+        {
+            <li class="list-inline-item">
+                <a href="@Url.Action("RecipeDisplay", "Recipes", new { categoryId = category.Id })" class="btn btn-outline-primary">@category.Name</a>
+            </li>
+        }
+    </ul>
+
+    <h5>Filter by Tag:</h5>
+    <ul class="list-inline">
+        @foreach (var tag in ViewBag.Tags)
+        {
+            <li class="list-inline-item">
+                <a href="@Url.Action("RecipeDisplay", "Recipes", new { tagId = tag.Id })" class="btn btn-outline-success">@tag.Name</a>
+            </li>
+        }
+    </ul>
+</div>
+
+<hr>
+
 <div class="row">
     @foreach (var recipe in Model)
     {
         <div class="col-md-4 mb-4">
-            <div class="card">
+            <div class="card shadow">
                 <img src="@recipe.ImageUrl" class="card-img-top" alt="@recipe.Name" style="height: 250px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title">@recipe.Name</h5>
                     <p class="card-text">@recipe.Description</p>
                     <p><strong>Difficulty:</strong> @recipe.Difficulty</p>
                     <p><strong>Category:</strong> @(recipe.Category != null ? recipe.Category.Name : "Uncategorized")</p>
+
+                    <!-- Display Tags -->
+                    @if (recipe.RecipeTags != null && recipe.RecipeTags.Any())
+                    {
+                        <p><strong>Tags:</strong></p>
+                        <ul class="list-inline">
+                            @foreach (var tag in recipe.RecipeTags)
+                            {
+                                <li class="list-inline-item">
+                                    <span class="badge bg-success">@tag.Tag.Name</span>
+                                </li>
+                            }
+                        </ul>
+                    }
+
                     <a href="@Url.Action("Details", "Recipes", new { id = recipe.Id })" class="btn btn-primary">View Details</a>
                     <a href="@Url.Action("Edit", "Recipes", new { id = recipe.Id })" class="btn btn-warning">Edit</a>
                 </div>
@@ -24,3 +76,4 @@
         </div>
     }
 </div>
+

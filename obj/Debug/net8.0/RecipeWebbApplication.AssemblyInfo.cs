@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RecipeWebbApplication")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c53774b05c3d98f2563b7fe2613bdc92ded139d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5513f05d1dc9ee52b0c194607d58ba1964100fd9")]
 [assembly: System.Reflection.AssemblyProductAttribute("RecipeWebbApplication")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RecipeWebbApplication")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

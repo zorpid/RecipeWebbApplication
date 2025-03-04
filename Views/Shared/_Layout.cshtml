@@ -44,6 +44,10 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Help</a></li>
                                 <li><a class="dropdown-item" href="#">Contact</a></li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li> <a asp-controller="Admin" asp-action="Index">Admin Panel</a></li>
+                                }
                             </ul>
                         </li>
                     </ul>
