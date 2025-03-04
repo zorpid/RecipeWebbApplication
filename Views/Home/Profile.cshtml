@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Recipe>
+
+<h1>Your Recipes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Recipe Title</th>
+            <th>Created By</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipe in Model)
+        {
+            <tr>
+                <td>@recipe.Name</td>
+                <td>@recipe.CreatedByUser?.UserName</td>
+            </tr>
+        }
+    </tbody>
+</table>

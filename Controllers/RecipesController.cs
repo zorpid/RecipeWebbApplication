@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +16,11 @@ namespace RecipeWebbApplication.Controllers
     public class RecipesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public RecipesController(ApplicationDbContext context)
+        public RecipesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
+            _userManager = userManager;
             _context = context;
         }
 
@@ -96,6 +100,7 @@ namespace RecipeWebbApplication.Controllers
         {
             var recipe = new Recipe
             {
+
                 RecipeIngredients = new List<RecipeIngredient>(), // Ensure it's initialized
                 RecipeTags = new List<RecipeTag>() // Ensure it's initialized
             };
@@ -143,6 +148,7 @@ public async Task<IActionResult> Create(Recipe recipe, List<string> IngredientNa
             return BadRequest("Ingredient names and quantities do not match.");
         }
 
+        recipe.CreatedByUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the user ID from the claims
         recipe.CreatedAt = DateTime.UtcNow;
         recipe.UpdatedAt = DateTime.UtcNow;
         recipe.RecipeIngredients = new List<RecipeIngredient>();
@@ -590,5 +596,19 @@ public async Task<IActionResult> Create(Recipe recipe, List<string> IngredientNa
 
             return RedirectToAction("Edit", new { id = recipeId });
         }
+
+        public async Task<IActionResult> Profile()
+        {
+            var userId = _userManager.GetUserId(User);
+            var recipes = await _context.Recipes
+                .Where(r => r.CreatedByUserId == userId)
+                .Include(r => r.CreatedByUser) // Include the creator's user information
+                .ToListAsync();
+
+            return View(recipes);
+        }
+
+
+
     }
 }

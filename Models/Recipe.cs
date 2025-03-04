@@ -51,6 +51,8 @@ namespace RecipeWebbApplication.Models
 
         // Add this property to handle the selected tags
         public List<int>? SelectedTagIds { get; set; }
+
+
     }
 
     // Difficulty Enum

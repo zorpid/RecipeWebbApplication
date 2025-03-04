@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RecipeWebbApplication.Data;  // Make sure this namespace is correct
 using RecipeWebbApplication.Models;
 using System.Linq;
@@ -99,6 +100,8 @@ namespace RecipeWebbApplication.Controllers
             return View();
         }
 
-  
+
+
+
     }
 }

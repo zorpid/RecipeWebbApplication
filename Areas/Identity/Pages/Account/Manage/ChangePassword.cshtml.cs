@@ -4,10 +4,12 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using RecipeWebbApplication.Models;
 
@@ -124,5 +126,8 @@ namespace RecipeWebbApplication.Areas.Identity.Pages.Account.Manage
 
             return RedirectToPage();
         }
+
+
+
     }
 }

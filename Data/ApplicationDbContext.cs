@@ -82,6 +82,10 @@ namespace RecipeWebbApplication.Data
                 new Tag { Id = 5, Name = "Spicy" },
                 new Tag { Id = 6, Name = "Halal" }
             );
+
+
+
+
         }
     }
 }

@@ -8,7 +8,9 @@ namespace RecipeWebbApplication.Models
         public string FullName { get; set; } = string.Empty; // Ensure it has a default value
 
         // Navigation properties
-        public List<Recipe> Recipes { get; set; }
+        //public List<Recipe> Recipes { get; set; }
+        public ICollection<Recipe> Recipes { get; set; }
         public List<RecipeReview> Reviews { get; set; }
+
     }
 }
