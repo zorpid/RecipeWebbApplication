@@ -9,6 +9,42 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Visibility</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipe in Model)
+        {
+            <tr>
+                <td>@recipe.Name</td>
+                <td>
+                    @if (recipe.IsPublic)
+                    {
+                        <span class="badge bg-success">Public</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Private</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@recipe.Id" class="btn btn-primary">View</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
 <table class="table">
     <thead>
         <tr>
@@ -100,6 +136,10 @@
                     }
 
             </td>
+
+
+
+
         </tr>
 }
     </tbody>

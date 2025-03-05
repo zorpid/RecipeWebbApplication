@@ -60,8 +60,18 @@ namespace RecipeWebbApplication.Controllers
         // GET: Recipes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Recipes.Include(r => r.Category).Include(r => r.CreatedByUser);
-            return View(await applicationDbContext.ToListAsync());
+            //var applicationDbContext = _context.Recipes.Include(r => r.Category).Include(r => r.CreatedByUser);
+            //return View(await applicationDbContext.ToListAsync());
+
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var recipes = await _context.Recipes
+                .Where(r => r.IsPublic || r.CreatedByUserId == userId) // Show public or user-owned recipes
+                .ToListAsync();
+
+            return View(recipes);
+
         }
 
 

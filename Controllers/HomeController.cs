@@ -59,18 +59,33 @@ namespace RecipeWebbApplication.Controllers
         [Authorize]
         public async Task<IActionResult> Profile()
         {
-            var userId = _userManager.GetUserId(User);
-            if (userId == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            //var userId = _userManager.GetUserId(User);
+            //if (userId == null)
+            //{
+            //    return RedirectToAction("Login", "Account");
+            //}
 
-            var recipes = await _context.Recipes
+            //var recipes = await _context.Recipes
+            //    .Where(r => r.CreatedByUserId == userId)
+            //    .Include(r => r.CreatedByUser)
+            //    .ToListAsync();
+
+            //return View(recipes);
+
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var userRecipes = _context.Recipes
                 .Where(r => r.CreatedByUserId == userId)
-                .Include(r => r.CreatedByUser)
-                .ToListAsync();
+                .Include(r => r.CreatedByUser)// Show only logged-in user's recipes
+                .ToList();
 
-            return View(recipes);
+
+            return View(userRecipes);
+
+
+
+
         }
 
 

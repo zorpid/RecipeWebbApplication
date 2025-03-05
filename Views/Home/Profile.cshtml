@@ -19,3 +19,36 @@
         }
     </tbody>
 </table>
+
+<h2>My Recipes</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Visibility</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipe in Model)
+        {
+            <tr>
+                <td>@recipe.Name</td>
+                <td>
+                    @if (recipe.IsPublic)
+                    {
+                        <span class="badge bg-success">Public</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Private</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@recipe.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@recipe.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
