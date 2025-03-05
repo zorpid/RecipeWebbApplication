@@ -26,6 +26,7 @@ namespace RecipeWebbApplication.Controllers
 
         public async Task<IActionResult> RecipeDisplay(int? categoryId, int? tagId)
         {
+
             var recipes = _context.Recipes
                 .Include(r => r.Category)
                 .Include(r => r.RecipeTags)
@@ -67,6 +68,8 @@ namespace RecipeWebbApplication.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var recipes = await _context.Recipes
+                .Include(r => r.Category) // Include category details
+                .Include(r => r.CreatedByUser) // Ensure CreatedByUser is included
                 .Where(r => r.IsPublic || r.CreatedByUserId == userId) // Show public or user-owned recipes
                 .ToListAsync();
 
