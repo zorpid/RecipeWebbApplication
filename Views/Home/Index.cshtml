@@ -1,5 +1,8 @@
-﻿@{
+﻿@using System.Security.Claims
+
+@{
     ViewData["Title"] = "Home Page";
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get logged-in user ID
 }
 
 <!-- Hero Section -->
@@ -16,16 +19,40 @@
     <div class="row">
         @foreach (var recipe in ViewBag.FeaturedRecipes)
         {
-            <div class="col-md-4">
-                <div class="card shadow-sm mb-4">
-                    <img src="@recipe.ImageUrl" class="card-img-top" alt="@recipe.Name" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">@recipe.Name</h5>
-                        <p class="card-text">@recipe.Description.Substring(0, Math.Min(100, recipe.Description.Length))...</p>
-                        <a href="@Url.Action("Details", "Recipes", new { id = recipe.Id })" class="btn btn-primary">View Recipe</a>
+            if (recipe.IsPublic || recipe.CreatedByUserId == userId || User.IsInRole("Admin")) // Show only public or user-owned recipes
+            {
+                <div class="col-md-4">
+                    <div class="card shadow-sm mb-4">
+                        <img src="@recipe.ImageUrl" class="card-img-top" alt="@recipe.Name" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">@recipe.Name</h5>
+                            <p class="card-text">@recipe.Description.Substring(0, Math.Min(100, recipe.Description.Length))...</p>
+
+                            <!-- Visibility Badge -->
+                            <p>
+                                <strong>Visibility:</strong>
+                                @if (recipe.IsPublic)
+                                {
+                                    <span class="badge bg-success">Public</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Private</span>
+                                }
+                            </p>
+
+                            @if (recipe.IsPublic || recipe.CreatedByUserId == userId)
+                            {
+                                <a href="@Url.Action("Details", "Recipes", new { id = recipe.Id })" class="btn btn-primary">View Recipe</a>
+                            }
+                            else
+                            {
+                                <button class="btn btn-secondary" disabled>Private</button>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         }
     </div>
 </div>
@@ -55,4 +82,3 @@
         }
     </div>
 </div>
-

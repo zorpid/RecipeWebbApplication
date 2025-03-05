@@ -66,11 +66,12 @@ namespace RecipeWebbApplication.Controllers
 
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var isAdmin = User.IsInRole("Admin");
 
             var recipes = await _context.Recipes
                 .Include(r => r.Category) // Include category details
                 .Include(r => r.CreatedByUser) // Ensure CreatedByUser is included
-                .Where(r => r.IsPublic || r.CreatedByUserId == userId) // Show public or user-owned recipes
+                .Where(r => isAdmin || r.IsPublic || r.CreatedByUserId == userId) // Show public or user-owned recipes
                 .ToListAsync();
 
             return View(recipes);
@@ -215,77 +216,6 @@ public async Task<IActionResult> Create(Recipe recipe, List<string> IngredientNa
 
 
 
-
-
-
-
-        /// 
-
-        // GET: Recipes/Create
-        //public IActionResult Create()
-        //{
-        //    // Populate Category dropdown
-        //    ViewData["CategoryId"] = _context.Categories.Any()
-        //        ? new SelectList(_context.Categories, "Id", "Name")
-        //        : null;
-
-        //    // Populate Difficulty dropdown
-        //    ViewBag.DifficultyList = new SelectList(Enum.GetValues(typeof(DifficultyLevel)));
-
-        //    // Populate tags dropdown
-        //    ViewBag.Tags = new SelectList(_context.Tags, "Id", "Name"); // Assuming you have a Tags table
-
-        //    return View();
-        //}
-
-        //// POST: Recipes/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,Name,Description,Instructions,PrepTimeMinutes,CookTimeMinutes,Servings,ImageUrl,Difficulty,CategoryId")] Recipe recipe, int[] selectedTagIds)
-        //public async Task<IActionResult> Create([Bind("Id,Name,Description,Instructions,PrepTimeMinutes,CookTimeMinutes,Servings,ImageUrl,Difficulty,CategoryId")] Recipe recipe, int[] selectedTagIds)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        // Automatically set timestamps
-        //        recipe.CreatedAt = DateTime.UtcNow;
-        //        recipe.UpdatedAt = DateTime.UtcNow;
-
-        //        // Set CreatedByUserId (if users exist)
-        //        recipe.CreatedByUserId = null; // Or use _userManager.GetUserId(User) if authentication exists
-
-        //        // Handle CategoryId (nullable)
-        //        if (recipe.CategoryId == null)
-        //        {
-        //            recipe.CategoryId = 1; // Set to a default category (optional)
-        //        }
-
-        //        // Add selected tags
-        //        if (selectedTagIds != null)
-        //        {
-        //            foreach (var tagId in selectedTagIds)
-        //            {
-        //                var tag = await _context.Tags.FindAsync(tagId);
-        //                if (tag != null)
-        //                {
-        //                    recipe.RecipeTags.Add(new RecipeTag { Recipe = recipe, Tag = tag });
-        //                }
-        //            }
-        //        }
-
-        //        _context.Add(recipe);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-
-        //    // Re-populate dropdowns if validation fails
-        //    ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", recipe.CategoryId);
-        //    ViewBag.DifficultyList = new SelectList(Enum.GetValues(typeof(DifficultyLevel)));
-        //    ViewBag.Tags = new SelectList(_context.Tags, "Id", "Name", selectedTagIds);
-
-        //    return View(recipe);
-        //}
-
-
         //// GET: Recipes/Edit/5
         // GET: Recipes/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -321,7 +251,7 @@ public async Task<IActionResult> Create(Recipe recipe, List<string> IngredientNa
         // POST: Recipes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Instructions,PrepTimeMinutes,CookTimeMinutes,Servings,ImageUrl,Difficulty,CategoryId,SelectedTagIds")] Recipe recipe)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Instructions,PrepTimeMinutes,CookTimeMinutes,Servings,ImageUrl,Difficulty,CategoryId,SelectedTagIds, IsPublic")] Recipe recipe)
         {
             if (id != recipe.Id)
             {
@@ -351,6 +281,7 @@ public async Task<IActionResult> Create(Recipe recipe, List<string> IngredientNa
                 existingRecipe.Difficulty = recipe.Difficulty;
                 existingRecipe.CategoryId = recipe.CategoryId;
                 existingRecipe.UpdatedAt = DateTime.UtcNow;
+                existingRecipe.IsPublic = recipe.IsPublic;
 
                 _context.Entry(existingRecipe).Property(r => r.CategoryId).IsModified = true;
 
@@ -389,113 +320,6 @@ public async Task<IActionResult> Create(Recipe recipe, List<string> IngredientNa
         }
 
 
-
-        // GET: Recipes/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var recipe = await _context.Recipes
-        //        .Include(r => r.Category)
-        //        .Include(r => r.RecipeTags)
-        //            .ThenInclude(rt => rt.Tag) // Include associated tags
-        //        .FirstOrDefaultAsync(r => r.Id == id);
-
-        //    if (recipe == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    // Populate Category dropdown
-        //    ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", recipe.CategoryId);
-
-        //    // Populate Difficulty dropdown
-        //    ViewBag.DifficultyList = new SelectList(Enum.GetValues(typeof(DifficultyLevel)));
-
-        //    // Populate tags list, and pre-select the ones that are already associated with the recipe
-        //    ViewBag.Tags = new SelectList(_context.Tags, "Id", "Name", recipe.RecipeTags.Select(rt => rt.TagId).ToArray());
-
-        //    return View(recipe);
-        //}
-
-        // POST: Recipes/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Instructions,PrepTimeMinutes,CookTimeMinutes,Servings,ImageUrl,Difficulty,CategoryId")] Recipe recipe, int[] selectedTagIds)
-        //{
-        //    if (id != recipe.Id)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            var existingRecipe = await _context.Recipes
-        //                .Include(r => r.RecipeTags) // Include RecipeTags to modify tags
-        //                .FirstOrDefaultAsync(r => r.Id == id);
-
-        //            if (existingRecipe == null)
-        //            {
-        //                return NotFound();
-        //            }
-
-        //            // Update the recipe fields
-        //            existingRecipe.Name = recipe.Name;
-        //            existingRecipe.Description = recipe.Description;
-        //            existingRecipe.Instructions = recipe.Instructions;
-        //            existingRecipe.PrepTimeMinutes = recipe.PrepTimeMinutes;
-        //            existingRecipe.CookTimeMinutes = recipe.CookTimeMinutes;
-        //            existingRecipe.Servings = recipe.Servings;
-        //            existingRecipe.ImageUrl = recipe.ImageUrl;
-        //            existingRecipe.Difficulty = recipe.Difficulty;
-        //            existingRecipe.CategoryId = recipe.CategoryId;
-        //            existingRecipe.UpdatedAt = DateTime.UtcNow;
-
-        //            // Remove existing tags (clear RecipeTags before adding new ones)
-        //            existingRecipe.RecipeTags.Clear();
-
-        //            // Add new tags
-        //            if (selectedTagIds != null)
-        //            {
-        //                foreach (var tagId in selectedTagIds)
-        //                {
-        //                    var tag = await _context.Tags.FindAsync(tagId);
-        //                    if (tag != null)
-        //                    {
-        //                        existingRecipe.RecipeTags.Add(new RecipeTag { Recipe = existingRecipe, Tag = tag });
-        //                    }
-        //                }
-        //            }
-
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!_context.Recipes.Any(e => e.Id == recipe.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-
-        //        return RedirectToAction(nameof(Index));
-        //    }
-
-        //    // Re-populate dropdowns if validation fails
-        //    ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", recipe.CategoryId);
-        //    ViewBag.DifficultyList = new SelectList(Enum.GetValues(typeof(DifficultyLevel)));
-        //    ViewBag.Tags = new SelectList(_context.Tags, "Id", "Name", selectedTagIds);
-
-        //    return View(recipe);
-        //}
 
 
 

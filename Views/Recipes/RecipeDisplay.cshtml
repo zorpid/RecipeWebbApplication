@@ -1,12 +1,13 @@
-﻿@model IEnumerable<RecipeWebbApplication.Models.Recipe>
+﻿@using System.Security.Claims
+@model IEnumerable<RecipeWebbApplication.Models.Recipe>
 
 @{
     ViewData["Title"] = "Recipe Display";
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get logged-in user ID
 }
 
 <h2 class="text-center">Recipe Display</h2>
 
-<!-- Display Selected Category or Tag -->
 @if (!string.IsNullOrEmpty(ViewBag.CategoryName))
 {
     <h4 class="text-center">Showing recipes in category: <span class="text-primary">@ViewBag.CategoryName</span></h4>
@@ -46,34 +47,61 @@
 <div class="row">
     @foreach (var recipe in Model)
     {
-        <div class="col-md-4 mb-4">
-            <div class="card shadow">
-                <img src="@recipe.ImageUrl" class="card-img-top" alt="@recipe.Name" style="height: 250px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">@recipe.Name</h5>
-                    <p class="card-text">@recipe.Description</p>
-                    <p><strong>Difficulty:</strong> @recipe.Difficulty</p>
-                    <p><strong>Category:</strong> @(recipe.Category != null ? recipe.Category.Name : "Uncategorized")</p>
+        if (recipe.IsPublic || recipe.CreatedByUserId == userId) // Show only public or user-owned recipes
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card shadow">
+                    <img src="@recipe.ImageUrl" class="card-img-top" alt="@recipe.Name" style="height: 250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@recipe.Name</h5>
+                        <p class="card-text">@recipe.Description</p>
 
-                    <!-- Display Tags -->
-                    @if (recipe.RecipeTags != null && recipe.RecipeTags.Any())
-                    {
-                        <p><strong>Tags:</strong></p>
-                        <ul class="list-inline">
-                            @foreach (var tag in recipe.RecipeTags)
+                        <p>
+                            <strong>Difficulty:</strong> @recipe.Difficulty
+                        </p>
+                        <p>
+                            <strong>Category:</strong> @(recipe.Category != null ? recipe.Category.Name : "Uncategorized")
+                        </p>
+
+                        <p>
+                            <strong>Visibility:</strong>
+                            @if (recipe.IsPublic)
                             {
-                                <li class="list-inline-item">
-                                    <span class="badge bg-success">@tag.Tag.Name</span>
-                                </li>
+                                <span class="badge bg-success">Public</span>
                             }
-                        </ul>
-                    }
+                            else
+                            {
+                                <span class="badge bg-danger">Private</span>
+                            }
+                        </p>
 
-                    <a href="@Url.Action("Details", "Recipes", new { id = recipe.Id })" class="btn btn-primary">View Details</a>
-                    <a href="@Url.Action("Edit", "Recipes", new { id = recipe.Id })" class="btn btn-warning">Edit</a>
+                        <!-- Display Tags -->
+                        @if (recipe.RecipeTags != null && recipe.RecipeTags.Any())
+                        {
+                            <p><strong>Tags:</strong></p>
+                            <ul class="list-inline">
+                                @foreach (var tag in recipe.RecipeTags)
+                                {
+                                    <li class="list-inline-item">
+                                        <span class="badge bg-success">@tag.Tag.Name</span>
+                                    </li>
+                                }
+                            </ul>
+                        }
+
+                        <a href="@Url.Action("Details", "Recipes", new { id = recipe.Id })" class="btn btn-primary">View Details</a>
+
+                        @if (recipe.CreatedByUserId == userId)  // Allow edit only for the owner
+                        {
+                            <a href="@Url.Action("Edit", "Recipes", new { id = recipe.Id })" class="btn btn-warning">Edit</a>
+                        }
+                        else
+                        {
+                            <button class="btn btn-warning" disabled>Edit</button>
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     }
 </div>
-
