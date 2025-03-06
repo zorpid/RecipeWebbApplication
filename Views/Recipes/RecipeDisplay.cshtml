@@ -19,6 +19,18 @@
 
 <hr>
 
+
+<!-- Search Bar -->
+<div class="mb-3">
+    <form method="get" action="@Url.Action("RecipeDisplay", "Recipes")">
+        <div class="input-group">
+            <input type="text" name="searchTerm" class="form-control" placeholder="Search recipes..." value="@ViewBag.SearchTerm" />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+</div>
+
+
 <!-- Filter Options -->
 <div class="mb-3">
     <h5>Filter by Category:</h5>
@@ -99,6 +111,19 @@
                         {
                             <button class="btn btn-warning" disabled>Edit</button>
                         }
+
+                        <!-- Average Rating -->
+                        <div class="mt-3">
+                            <h5>Average Rating</h5>
+                            @if (recipe.AverageRating > 0)
+                            {
+                                <p class="text-warning">⭐ @recipe.AverageRating.ToString("0.0") / 5</p>
+                            }
+                            else
+                            {
+                                <p class="text-muted">No ratings available.</p>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

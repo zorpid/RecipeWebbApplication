@@ -18,6 +18,7 @@ namespace RecipeWebbApplication.Data
         public DbSet<RecipeTag> RecipeTags { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<RecipeReview> RecipeReviews { get; set; }
+        public DbSet<RecipeComment> RecipeComments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -63,6 +64,18 @@ namespace RecipeWebbApplication.Data
                 .WithMany(u => u.Reviews)
                 .HasForeignKey(rr => rr.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<RecipeComment>()
+    .HasOne(rc => rc.User)
+    .WithMany()
+    .HasForeignKey(rc => rc.UserId)
+    .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<RecipeComment>()
+                .HasOne(rc => rc.Recipe)
+                .WithMany(r => r.Comments)
+                .HasForeignKey(rc => rc.RecipeId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // SEED DATA for Categories Table 
             modelBuilder.Entity<Category>().HasData(

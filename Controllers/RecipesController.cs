@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -24,9 +25,8 @@ namespace RecipeWebbApplication.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> RecipeDisplay(int? categoryId, int? tagId)
+        public async Task<IActionResult> RecipeDisplay(int? categoryId, int? tagId, string searchTerm)
         {
-
             var recipes = _context.Recipes
                 .Include(r => r.Category)
                 .Include(r => r.RecipeTags)
@@ -51,11 +51,81 @@ namespace RecipeWebbApplication.Controllers
                     .FirstOrDefault();
             }
 
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                recipes = recipes.Where(r => r.Name.Contains(searchTerm) || r.Description.Contains(searchTerm));
+                ViewBag.SearchTerm = searchTerm;
+            }
+
             ViewBag.Categories = await _context.Categories.ToListAsync();
             ViewBag.Tags = await _context.Tags.ToListAsync();
 
             return View(await recipes.ToListAsync());
         }
+
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> AddComment(int id, string commentText)
+        {
+            var recipe = await _context.Recipes.FindAsync(id);
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var comment = new RecipeComment
+            {
+                RecipeId = id,
+                UserId = userId,
+                Text = commentText,
+                CreatedAt = DateTime.Now
+            };
+
+            _context.RecipeComments.Add(comment);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("RecipeDisplay", new { id });
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> AddReview(int id, int rating, string reviewText)
+        {
+            var recipe = await _context.Recipes.FindAsync(id);
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var review = new RecipeReview
+            {
+                RecipeId = id,
+                UserId = userId,
+                Rating = rating,
+                Text = reviewText,
+                CreatedAt = DateTime.Now
+            };
+
+            _context.RecipeReviews.Add(review);
+            await _context.SaveChangesAsync();
+
+            // Calculate and update the average rating
+            recipe.AverageRating = _context.RecipeReviews
+                .Where(r => r.RecipeId == id)
+                .Average(r => r.Rating);
+
+            _context.Recipes.Update(recipe);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("RecipeDisplay", new { id });
+        }
+
+
+
+
 
 
         // GET: Recipes

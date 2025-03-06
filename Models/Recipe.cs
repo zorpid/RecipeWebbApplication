@@ -54,6 +54,8 @@ namespace RecipeWebbApplication.Models
 
         public bool IsPublic { get; set; } // NEW: Determines if the recipe is public or private
 
+        public List<RecipeComment>? Comments { get; set; }
+        public double AverageRating { get; set; } // Add this property
 
     }
 

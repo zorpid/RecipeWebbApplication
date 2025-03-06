@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\wwwroot\\img\\default-photo.png",
+      "PackagePath": "staticwebassets\\img\\default-photo.png"
+    },
+    {
       "Id": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\wwwroot\\img\\logo.png",
       "PackagePath": "staticwebassets\\img\\logo.png"
     },
