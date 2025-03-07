@@ -76,8 +76,9 @@
                     </div>
 
                     <div class="text-center">
-                        <img id="imagePreview" src="~/img/default-photo.png class="img-thumbnail" style="width: 100%; max-height: 250px; object-fit: cover;" />
+                        <img id="imagePreview" src="/img/default-photo.png" class="img-thumbnail" style="width: 100%; max-height: 250px; object-fit: contain;" />
                     </div>
+
                 </div>
             </div>
 
@@ -161,10 +162,11 @@
                 document.getElementById("imagePreview").src = url;
             };
             img.onerror = function() {
-                document.getElementById("imagePreview").src = "~/img/default-photo.png";
+                document.getElementById("imagePreview").src = "/img/default-photo.png";
             };
             img.src = url;
         }
+
 
         document.getElementById("addIngredient").addEventListener("click", function () {
             let container = document.getElementById("ingredientContainer");

@@ -1,0 +1,46 @@
+Classes and Relationships
+1.	ApplicationUser
+•	Inherits from IdentityUser
+•	Attributes: FullName, Recipes, Reviews
+2.	Recipe
+•	Attributes: Id, Name, Description, Instructions, PrepTimeMinutes, CookTimeMinutes, Servings, ImageUrl, Difficulty, CategoryId, Category, CreatedByUserId, CreatedByUser, RecipeIngredients, RecipeTags, RecipeReviews, Comments, CreatedAt, UpdatedAt, IsPublic, AverageRating
+•	Relationships:
+•	Many-to-One with ApplicationUser (CreatedByUser)
+•	Many-to-One with Category
+•	One-to-Many with RecipeIngredient
+•	One-to-Many with RecipeTag
+•	One-to-Many with RecipeReview
+•	One-to-Many with RecipeComment
+3.	Category
+•	Attributes: Id, Name, Recipes
+•	Relationships:
+•	One-to-Many with Recipe
+4.	Ingredient
+•	Attributes: Id, Name, RecipeIngredients
+•	Relationships:
+•	One-to-Many with RecipeIngredient
+5.	RecipeIngredient
+•	Attributes: RecipeId, Recipe, IngredientId, Ingredient, Quantity
+•	Relationships:
+•	Many-to-One with Recipe
+•	Many-to-One with Ingredient
+6.	Tag
+•	Attributes: Id, Name, RecipeTags
+•	Relationships:
+•	One-to-Many with RecipeTag
+7.	RecipeTag
+•	Attributes: RecipeId, Recipe, TagId, Tag
+•	Relationships:
+•	Many-to-One with Recipe
+•	Many-to-One with Tag
+8.	RecipeReview
+•	Attributes: Id, RecipeId, Recipe, UserId, User, Rating, Text, CreatedAt
+•	Relationships:
+•	Many-to-One with Recipe
+•	Many-to-One with ApplicationUser
+9.	RecipeComment
+•	Attributes: Id, RecipeId, Recipe, UserId, User, Text, CreatedAt
+•	Relationships:
+•	Many-to-One with Recipe
+•	Many-to-One with ApplicationUser
+
