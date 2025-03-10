@@ -9,134 +9,114 @@
         <h2 class="text-center">Create a New Recipe</h2>
         <hr>
 
-
         <!-- Main Recipe Form -->
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label"><strong>Recipe Name</strong></label>
+                <input asp-for="Name" class="form-control" placeholder="Enter recipe name" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label"><strong>Short Description</strong></label>
+                <textarea asp-for="Description" class="form-control" rows="2" placeholder="Write a short description"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Instructions" class="form-label"><strong>Cooking Instructions</strong></label>
+                <textarea asp-for="Instructions" class="form-control" rows="4" placeholder="Step-by-step instructions"></textarea>
+            </div>
+
             <div class="row">
-                <!-- Left Column -->
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label asp-for="Name" class="form-label"><strong>Recipe Name</strong></label>
-                        <input asp-for="Name" class="form-control" placeholder="Enter recipe name" required />
-                        <span asp-validation-for="Name" class="text-danger"></span>
-                    </div>
-
-                    <div class="mb-3">
-                        <label asp-for="Description" class="form-label"><strong>Short Description</strong></label>
-                        <textarea asp-for="Description" class="form-control" rows="2" placeholder="Write a short description"></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label asp-for="Instructions" class="form-label"><strong>Cooking Instructions</strong></label>
-                        <textarea asp-for="Instructions" class="form-control" rows="4" placeholder="Step-by-step instructions"></textarea>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label asp-for="PrepTimeMinutes" class="form-label"><strong>Prep Time (min)</strong></label>
-                                <input asp-for="PrepTimeMinutes" type="number" class="form-control" required />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label asp-for="CookTimeMinutes" class="form-label"><strong>Cook Time (min)</strong></label>
-                                <input asp-for="CookTimeMinutes" type="number" class="form-control" required />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label asp-for="Servings" class="form-label"><strong>Servings</strong></label>
-                        <input asp-for="Servings" type="number" class="form-control" required />
+                        <label asp-for="PrepTimeMinutes" class="form-label"><strong>Prep Time (min)</strong></label>
+                        <input asp-for="PrepTimeMinutes" type="number" class="form-control" required />
                     </div>
                 </div>
-
-                <!-- Right Column -->
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label asp-for="CategoryId" class="form-label"><strong>Category</strong></label>
-                        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId">
-                            <option value="">-- Select Category --</option>
-                        </select>
+                        <label asp-for="CookTimeMinutes" class="form-label"><strong>Cook Time (min)</strong></label>
+                        <input asp-for="CookTimeMinutes" type="number" class="form-control" required />
                     </div>
-
-                    <div class="mb-3">
-                        <label asp-for="Difficulty" class="form-label"><strong>Difficulty Level</strong></label>
-                        <select asp-for="Difficulty" asp-items="ViewBag.DifficultyList" class="form-control">
-                            <option value="">-- Select Difficulty --</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label asp-for="ImageUrl" class="form-label"><strong>Recipe Image URL</strong></label>
-                        <input asp-for="ImageUrl" class="form-control" placeholder="Paste image URL" oninput="updateImagePreview(this.value)" />
-                    </div>
-
-                    <div class="text-center">
-                        <img id="imagePreview" src="/img/default-photo.png" class="img-thumbnail" style="width: 100%; max-height: 250px; object-fit: contain;" />
-                    </div>
-
                 </div>
             </div>
 
+            <div class="mb-3">
+                <label asp-for="Servings" class="form-label"><strong>Servings</strong></label>
+                <input asp-for="Servings" type="number" class="form-control" required />
+            </div>
 
-            <div class="form-group">
-                <label for="IsPublic">Recipe Visibility:</label>
+            <div class="mb-3">
+                <label asp-for="CategoryId" class="form-label"><strong>Category</strong></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId">
+                    <option value="">-- Select Category --</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Difficulty" class="form-label"><strong>Difficulty Level</strong></label>
+                <select asp-for="Difficulty" asp-items="ViewBag.DifficultyList" class="form-control">
+                    <option value="">-- Select Difficulty --</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ImageUrl" class="form-label"><strong>Recipe Image URL</strong></label>
+                <input asp-for="ImageUrl" class="form-control" placeholder="Paste image URL" oninput="updateImagePreview(this.value)" />
+            </div>
+
+            <div class="text-center mb-3">
+                <img id="imagePreview" src="/img/default-photo.png" class="img-thumbnail" style="width: 100%; max-height: 250px; object-fit: contain;" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="IsPublic" class="form-label"><strong>Recipe Visibility</strong></label>
                 <select asp-for="IsPublic" class="form-control">
                     <option value="true">Public</option>
                     <option value="false">Private</option>
                 </select>
             </div>
 
-
-
-            <hr />
-
-            <!-- ✅ Tags Selection -->
-            @if (ViewBag.AvailableTags != null && ((List<Tag>)ViewBag.AvailableTags).Any())
-            {
+            <div class="mb-3">
                 <label class="form-label"><strong>Select Tags</strong></label>
                 <div class="form-check">
-                    @foreach (var tag in ViewBag.AvailableTags as List<Tag>)
+                    @if (ViewBag.AvailableTags != null && ((List<Tag>)ViewBag.AvailableTags).Any())
                     {
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="SelectedTagIds" value="@tag.Id" />
-                            <label class="form-check-label">@tag.Name</label>
-                        </div>
+                        @foreach (var tag in ViewBag.AvailableTags as List<Tag>)
+                        {
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="SelectedTagIds" value="@tag.Id" />
+                                <label class="form-check-label">@tag.Name</label>
+                            </div>
+                        }
                     }
-                </div>
-            }
-            else
-            {
-                <p class="text-muted">No tags available.</p>
-            }
-
-            <hr />
-
-            <!-- ✅ Add Ingredients Section -->
-            <h4>Add Ingredients</h4>
-            <div id="ingredientContainer">
-                <div class="row ingredient-item">
-                    <div class="col-md-5">
-                        <label for="ingredientName" class="form-label">Ingredient Name</label>
-                        <input type="text" name="IngredientNames[]" class="form-control" placeholder="Enter ingredient name" />
-                    </div>
-                    <div class="col-md-5">
-                        <label for="quantity" class="form-label">Quantity</label>
-                        <input type="text" name="IngredientQuantities[]" class="form-control" placeholder="e.g., 2 cups, 1 tbsp" />
-                    </div>
-                    <div class="col-md-2 d-flex align-items-end">
-                        <button type="button" class="btn btn-danger remove-ingredient">Remove</button>
-                    </div>
+                    else
+                    {
+                        <p class="text-muted">No tags available.</p>
+                    }
                 </div>
             </div>
 
-            <button type="button" class="btn btn-success mt-2" id="addIngredient">Add Ingredient</button>
-
-            <hr />
+            <div class="mb-3">
+                <label class="form-label"><strong>Add Ingredients</strong></label>
+                <div id="ingredientContainer">
+                    <div class="row ingredient-item">
+                        <div class="col-md-5">
+                            <input type="text" name="IngredientNames[]" class="form-control" placeholder="Enter ingredient name" />
+                        </div>
+                        <div class="col-md-5">
+                            <input type="text" name="IngredientQuantities[]" class="form-control" placeholder="e.g., 2 cups, 1 tbsp" />
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button type="button" class="btn btn-danger remove-ingredient">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success mt-2" id="addIngredient">Add Ingredient</button>
+            </div>
 
             <div class="text-center">
                 <input type="submit" value="Create Recipe" class="btn btn-primary btn-lg" />
@@ -151,9 +131,9 @@
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @Html.PartialAsync("_ValidationScriptsPartial")
+}
+
 
     <script>
         function updateImagePreview(url) {
@@ -166,7 +146,6 @@
             };
             img.src = url;
         }
-
 
         document.getElementById("addIngredient").addEventListener("click", function () {
             let container = document.getElementById("ingredientContainer");

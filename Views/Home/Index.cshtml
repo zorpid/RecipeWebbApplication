@@ -28,18 +28,6 @@
                             <h5 class="card-title">@recipe.Name</h5>
                             <p class="card-text">@recipe.Description.Substring(0, Math.Min(100, recipe.Description.Length))...</p>
 
-                            <!-- Visibility Badge -->
-                            <p>
-                                <strong>Visibility:</strong>
-                                @if (recipe.IsPublic)
-                                {
-                                    <span class="badge bg-success">Public</span>
-                                }
-                                else
-                                {
-                                    <span class="badge bg-danger">Private</span>
-                                }
-                            </p>
 
                             @if (recipe.IsPublic || recipe.CreatedByUserId == userId)
                             {
