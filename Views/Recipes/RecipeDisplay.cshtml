@@ -37,18 +37,21 @@
     <ul class="list-inline">
         @foreach (var category in ViewBag.Categories)
         {
-            <li class="list-inline-item">
-                <a href="@Url.Action("RecipeDisplay", "Recipes", new { categoryId = category.Id })" class="btn btn-outline-primary">@category.Name</a>
+            var isSelected = ViewBag.SelectedCategoryId != null && ViewBag.SelectedCategoryId == category.Id;
+            <li class="list-inline-item @(isSelected ? "active" : "")">
+                <a href="@Url.Action("RecipeDisplay", "Recipes", new { categoryId = category.Id })" class="btn @(isSelected ? "btn-primary" : "btn-outline-primary")">@category.Name</a>
             </li>
         }
     </ul>
+
 
     <h5>Filter by Tag:</h5>
     <ul class="list-inline">
         @foreach (var tag in ViewBag.Tags)
         {
-            <li class="list-inline-item">
-                <a href="@Url.Action("RecipeDisplay", "Recipes", new { tagId = tag.Id })" class="btn btn-outline-success">@tag.Name</a>
+            var isSelected = ViewBag.SelectedTagId != null && ViewBag.SelectedTagId == tag.Id;
+            <li class="list-inline-item @(isSelected ? "active" : "")">
+                <a href="@Url.Action("RecipeDisplay", "Recipes", new { tagId = tag.Id })" class="btn @(isSelected ? "btn-success" : "btn-outline-success")">@tag.Name</a>
             </li>
         }
     </ul>

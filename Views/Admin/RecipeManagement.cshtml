@@ -1,23 +1,31 @@
 ﻿@model IEnumerable<Recipe>
 
-<h2>Manage Recipes</h2>
-<table class="table">
-    <tr>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Actions</th>
-    </tr>
-    @foreach (var recipe in Model)
-    {
-        <tr>
-            <td>@recipe.Name</td>
-            <td>@recipe.Category</td>
-            <td>
-                <form method="post" action="@Url.Action("DeleteRecipe", "Admin")">
-                    <input type="hidden" name="id" value="@recipe.Id" />
-                    <button type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-    }
-</table>
+<div class="container mt-5">
+    <h2 class="text-center">Manage Recipes</h2>
+    <div class="table-responsive mt-4">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var recipe in Model)
+                {
+                    <tr>
+                        <td>@recipe.Name</td>
+                        <td>@recipe.Category</td>
+                        <td>
+                            <form method="post" action="@Url.Action("DeleteRecipe", "Admin")" class="d-inline">
+                                <input type="hidden" name="id" value="@recipe.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

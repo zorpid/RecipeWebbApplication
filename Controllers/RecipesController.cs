@@ -59,6 +59,8 @@ namespace RecipeWebbApplication.Controllers
 
             ViewBag.Categories = await _context.Categories.ToListAsync();
             ViewBag.Tags = await _context.Tags.ToListAsync();
+            ViewBag.SelectedCategoryId = categoryId;
+            ViewBag.SelectedTagId = tagId;
 
             return View(await recipes.ToListAsync());
         }

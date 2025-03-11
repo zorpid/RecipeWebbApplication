@@ -1,14 +1,27 @@
 ﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
 
-<h2>Role Management</h2>
-<form method="post" action="@Url.Action("CreateRole", "Admin")">
-    <input type="text" name="roleName" placeholder="Enter Role Name" required />
-    <button type="submit">Create Role</button>
-</form>
+<div class="container mt-5">
+    <h2 class="text-center">Role Management</h2>
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <form method="post" action="@Url.Action("CreateRole", "Admin")" class="input-group mb-3">
+                <input type="text" name="roleName" class="form-control" placeholder="Enter Role Name" required />
+                <button type="submit" class="btn btn-primary">Create Role</button>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <ul class="list-group">
+                @foreach (var role in Model)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        @role.Name
+                        <a href="@Url.Action("DeleteRole", "Admin", new { id = role.Id })" class="btn btn-danger btn-sm">Delete</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
 
-<ul>
-    @foreach (var role in Model)
-    {
-        <li>@role.Name</li>
-    }
-</ul>

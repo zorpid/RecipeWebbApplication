@@ -1,34 +1,42 @@
 ﻿@model IEnumerable<ApplicationUser>
 
-<h2>User Management</h2>
-<table class="table">
-    <tr>
-        <th>Full Name</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Actions</th>
-    </tr>
-    @foreach (var user in Model)
-    {
-        <tr>
-            <td>@user.FullName</td>
-            <td>@user.Email</td>
-            <td>
-                @if (ViewBag.UserRoles.ContainsKey(user.Id))
+<div class="container mt-5">
+    <h2 class="text-center">User Management</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
                 {
-                    @foreach (var role in ViewBag.UserRoles[user.Id])
-                    {
-                        <span class="text-dark">@role</span>
-                    }
+                    <tr>
+                        <td>@user.FullName</td>
+                        <td>@user.Email</td>
+                        <td>
+                            @if (ViewBag.UserRoles.ContainsKey(user.Id))
+                            {
+                                @foreach (var role in ViewBag.UserRoles[user.Id])
+                                {
+                                    <span class="badge bg-secondary">@role</span>
+                                }
+                            }
+                            else
+                            {
+                                <span class="text-muted">No Role</span>
+                            }
+                        </td>
+                        <td>
+                            <a href="@Url.Action("AssignRole", "Admin", new { id = user.Id })" class="btn btn-sm btn-primary">Assign Role</a>
+                        </td>
+                    </tr>
                 }
-                else
-                {
-                    <span class="text-dark">No Role</span>
-                }
-            </td>
-            <td>
-                <a href="@Url.Action("AssignRole", "Admin", new { id = user.Id })">Assign Role</a>
-            </td>
-        </tr>
-    }
-</table>
+            </tbody>
+        </table>
+    </div>
+</div>
