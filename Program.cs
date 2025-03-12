@@ -25,6 +25,12 @@ using (var scope = app.Services.CreateScope())
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     await RoleSeeder.SeedRoles(roleManager);
 }
+// Ensure the "User" role exists
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    await EnsureRolesAsync(roleManager); // Added method call to ensure roles
+}
 
 using (var scope = app.Services.CreateScope())
 {
@@ -63,3 +69,12 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+// Method to ensure roles exist
+async Task EnsureRolesAsync(RoleManager<IdentityRole> roleManager)
+{
+    var roleExists = await roleManager.RoleExistsAsync("User");
+    if (!roleExists)
+    {
+        await roleManager.CreateAsync(new IdentityRole("User"));
+    }
+}

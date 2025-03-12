@@ -131,6 +131,7 @@ namespace RecipeWebbApplication.Controllers
 
 
         // GET: Recipes
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             //var applicationDbContext = _context.Recipes.Include(r => r.Category).Include(r => r.CreatedByUser);
@@ -143,7 +144,7 @@ namespace RecipeWebbApplication.Controllers
             var recipes = await _context.Recipes
                 .Include(r => r.Category) // Include category details
                 .Include(r => r.CreatedByUser) // Ensure CreatedByUser is included
-                .Where(r => isAdmin || r.IsPublic || r.CreatedByUserId == userId) // Show public or user-owned recipes
+                .Where(r => isAdmin || r.CreatedByUserId == userId) // Show public or user-owned recipes
                 .ToListAsync();
 
             return View(recipes);
