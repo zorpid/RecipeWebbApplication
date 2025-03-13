@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\img\\default-photo.png"
     },
     {
+      "Id": "C:\\Users\\zorpi\\Desktop\\ReceptApp\\RecipeWebbApplication\\wwwroot\\img\\hero-img.jpg",
+      "PackagePath": "staticwebassets\\img\\hero-img.jpg"
+    },
+    {
       "Id": "C:\\Users\\zorpi\\Desktop\\ReceptApp\\RecipeWebbApplication\\wwwroot\\img\\logo.png",
       "PackagePath": "staticwebassets\\img\\logo.png"
     },

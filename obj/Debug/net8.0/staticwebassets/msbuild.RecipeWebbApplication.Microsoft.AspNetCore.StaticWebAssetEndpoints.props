@@ -1,16 +1,16 @@
 ﻿<Project>
   <ItemGroup>
-    <StaticWebAssetEndpoint Include="_content/RecipeWebbApplication/css/site.c2tiyv64ts.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"c2tiyv64ts"},{"Name":"integrity","Value":"sha256-pAGv4ietcJNk/EwsQZ5BN9\u002BK4MuNYS2a9wl4Jw\u002Bq9D0="},{"Name":"label","Value":"_content/RecipeWebbApplication/css/site.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"362"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022pAGv4ietcJNk/EwsQZ5BN9\u002BK4MuNYS2a9wl4Jw\u002Bq9D0=\u0022"},{"Name":"Last-Modified","Value":"Thu, 27 Feb 2025 14:08:47 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/RecipeWebbApplication/css/site.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-pAGv4ietcJNk/EwsQZ5BN9\u002BK4MuNYS2a9wl4Jw\u002Bq9D0="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"362"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022pAGv4ietcJNk/EwsQZ5BN9\u002BK4MuNYS2a9wl4Jw\u002Bq9D0=\u0022"},{"Name":"Last-Modified","Value":"Thu, 27 Feb 2025 14:08:47 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-BGIi00Rz/BsEVLsjr6jFv1IIRyhf81ds\u002B3rVvwq4ZjI="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"957"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022BGIi00Rz/BsEVLsjr6jFv1IIRyhf81ds\u002B3rVvwq4ZjI=\u0022"},{"Name":"Last-Modified","Value":"Thu, 13 Mar 2025 13:01:58 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/RecipeWebbApplication/css/site.or6rfmkxh4.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"or6rfmkxh4"},{"Name":"integrity","Value":"sha256-BGIi00Rz/BsEVLsjr6jFv1IIRyhf81ds\u002B3rVvwq4ZjI="},{"Name":"label","Value":"_content/RecipeWebbApplication/css/site.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"957"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022BGIi00Rz/BsEVLsjr6jFv1IIRyhf81ds\u002B3rVvwq4ZjI=\u0022"},{"Name":"Last-Modified","Value":"Thu, 13 Mar 2025 13:01:58 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/RecipeWebbApplication/favicon.61n19gt1b8.ico">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</AssetFile>
@@ -35,6 +35,18 @@
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-OcetBetEm5y1FexpK2KH4GqezYpscE3Wsybi2M/k0Ng="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"2584"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022OcetBetEm5y1FexpK2KH4GqezYpscE3Wsybi2M/k0Ng=\u0022"},{"Name":"Last-Modified","Value":"Thu, 06 Mar 2025 14:54:49 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/RecipeWebbApplication/img/hero-img.8lpyn6y4s0.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\hero-img.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"8lpyn6y4s0"},{"Name":"integrity","Value":"sha256-9NoEvUE58gj6HI6kwTV2rLmVjPNxp2VHYPz9f5crenE="},{"Name":"label","Value":"_content/RecipeWebbApplication/img/hero-img.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"948154"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u00229NoEvUE58gj6HI6kwTV2rLmVjPNxp2VHYPz9f5crenE=\u0022"},{"Name":"Last-Modified","Value":"Thu, 13 Mar 2025 13:00:55 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/RecipeWebbApplication/img/hero-img.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\hero-img.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-9NoEvUE58gj6HI6kwTV2rLmVjPNxp2VHYPz9f5crenE="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"948154"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u00229NoEvUE58gj6HI6kwTV2rLmVjPNxp2VHYPz9f5crenE=\u0022"},{"Name":"Last-Modified","Value":"Thu, 13 Mar 2025 13:00:55 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/RecipeWebbApplication/img/logo.png">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\logo.png'))</AssetFile>

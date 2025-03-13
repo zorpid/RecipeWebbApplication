@@ -4,14 +4,14 @@
     ViewData["Title"] = "Home Page";
     var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get logged-in user ID
 }
-
 <!-- Hero Section -->
-<div class="container-fluid text-center bg-light py-5">
+<div class="container-fluid text-center hero-section py-5">
     <h1 class="display-3">🍽️ Welcome to Recipe Hub!</h1>
     <p class="lead">Discover & Share Amazing Recipes with the World</p>
     <a href="@Url.Action("RecipeDisplay", "Recipes")" class="btn btn-primary btn-lg">Browse Recipes</a>
     <a href="@Url.Action("Create", "Recipes")" class="btn btn-success btn-lg">Add Your Own Recipe</a>
 </div>
+
 
 <!-- Featured Recipes Section -->
 <div class="container mt-5">

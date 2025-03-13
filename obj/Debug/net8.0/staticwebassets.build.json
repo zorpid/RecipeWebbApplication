@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "k0sLYNf4S05Y0q1ODvQNZOTYEY6L7uAbUqzYNTWhRus=",
+  "Hash": "/AxK+CZm0YHE2Pegt9tFMg0ivRTiL1RT6NCNC71Y0yM=",
   "Source": "RecipeWebbApplication",
   "BasePath": "_content/RecipeWebbApplication",
   "Mode": "Default",
@@ -1333,8 +1333,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "c2tiyv64ts",
-      "Integrity": "pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=",
+      "Fingerprint": "or6rfmkxh4",
+      "Integrity": "BGIi00Rz/BsEVLsjr6jFv1IIRyhf81ds+3rVvwq4ZjI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1380,6 +1380,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\default-photo.png"
+    },
+    {
+      "Identity": "C:\\Users\\zorpi\\Desktop\\ReceptApp\\RecipeWebbApplication\\wwwroot\\img\\hero-img.jpg",
+      "SourceId": "RecipeWebbApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\zorpi\\Desktop\\ReceptApp\\RecipeWebbApplication\\wwwroot\\",
+      "BasePath": "_content/RecipeWebbApplication",
+      "RelativePath": "img/hero-img#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8lpyn6y4s0",
+      "Integrity": "9NoEvUE58gj6HI6kwTV2rLmVjPNxp2VHYPz9f5crenE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\hero-img.jpg"
     },
     {
       "Identity": "C:\\Users\\zorpi\\Desktop\\ReceptApp\\RecipeWebbApplication\\wwwroot\\img\\logo.png",
@@ -2623,51 +2644,6 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.c2tiyv64ts.css",
-      "AssetFile": "C:\\Users\\zorpi\\Desktop\\ReceptApp\\RecipeWebbApplication\\wwwroot\\css\\site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "362"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 14:08:47 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "c2tiyv64ts"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
-        }
-      ]
-    },
-    {
       "Route": "css/site.css",
       "AssetFile": "C:\\Users\\zorpi\\Desktop\\ReceptApp\\RecipeWebbApplication\\wwwroot\\css\\site.css",
       "Selectors": [],
@@ -2678,7 +2654,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "362"
+          "Value": "957"
         },
         {
           "Name": "Content-Type",
@@ -2686,11 +2662,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=\""
+          "Value": "\"BGIi00Rz/BsEVLsjr6jFv1IIRyhf81ds+3rVvwq4ZjI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 14:08:47 GMT"
+          "Value": "Thu, 13 Mar 2025 13:01:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2700,7 +2676,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
+          "Value": "sha256-BGIi00Rz/BsEVLsjr6jFv1IIRyhf81ds+3rVvwq4ZjI="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.or6rfmkxh4.css",
+      "AssetFile": "C:\\Users\\zorpi\\Desktop\\ReceptApp\\RecipeWebbApplication\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "957"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BGIi00Rz/BsEVLsjr6jFv1IIRyhf81ds+3rVvwq4ZjI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 13:01:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "or6rfmkxh4"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BGIi00Rz/BsEVLsjr6jFv1IIRyhf81ds+3rVvwq4ZjI="
         }
       ]
     },
@@ -5085,6 +5106,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-OcetBetEm5y1FexpK2KH4GqezYpscE3Wsybi2M/k0Ng="
+        }
+      ]
+    },
+    {
+      "Route": "img/hero-img.8lpyn6y4s0.jpg",
+      "AssetFile": "C:\\Users\\zorpi\\Desktop\\ReceptApp\\RecipeWebbApplication\\wwwroot\\img\\hero-img.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "948154"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9NoEvUE58gj6HI6kwTV2rLmVjPNxp2VHYPz9f5crenE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 13:00:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8lpyn6y4s0"
+        },
+        {
+          "Name": "label",
+          "Value": "img/hero-img.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-9NoEvUE58gj6HI6kwTV2rLmVjPNxp2VHYPz9f5crenE="
+        }
+      ]
+    },
+    {
+      "Route": "img/hero-img.jpg",
+      "AssetFile": "C:\\Users\\zorpi\\Desktop\\ReceptApp\\RecipeWebbApplication\\wwwroot\\img\\hero-img.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "948154"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9NoEvUE58gj6HI6kwTV2rLmVjPNxp2VHYPz9f5crenE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 13:00:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-9NoEvUE58gj6HI6kwTV2rLmVjPNxp2VHYPz9f5crenE="
         }
       ]
     },
