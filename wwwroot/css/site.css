@@ -43,3 +43,86 @@ body {
         background-color: rgba(0, 0, 0, 0.5); /* Optional: Add a dark overlay for better text contrast */
         z-index: -1;
     }
+
+/* NavBar */
+.custom-navbar {
+    width: 100%;
+    height: 80px; /* Increase the height of the navbar */
+    background: #007bff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   /* position: fixed;*/
+    top: 0;
+    left: 0;
+    transition: height 0.3s ease;
+    overflow: hidden;
+    z-index: 1000; /* Ensure the navbar is above other content */
+}
+
+    .custom-navbar:hover {
+        height: 120px; /* Increase the height on hover */
+    }
+
+    .custom-navbar .navbar-nav {
+        list-style: none;
+        display: flex;
+        padding: 0;
+        margin: 0;
+        justify-content: center; /* Center the nav items */
+        width: 100%; /* Ensure the nav items take full width */
+    }
+
+    .custom-navbar .nav-item {
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: background 0.3s;
+        color: white;
+        font-size: 1.5rem; /* Increase font size for better readability */
+    }
+
+        .custom-navbar .nav-item:hover, .custom-navbar .nav-item.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .custom-navbar .nav-item i {
+            font-size: 24px; /* Increase icon size */
+            margin-right: 10px;
+            color: white; /* Set icon color to white */
+        }
+
+        .custom-navbar .nav-item span {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+
+    .custom-navbar:hover .nav-item span {
+        opacity: 1;
+    }
+
+    .custom-navbar .navbar-toggler {
+        margin-top: 5px; /* Adjust margin for better alignment */
+    }
+
+    .custom-navbar .d-flex {
+        align-items: center; /* Vertically center the login partial */
+    }
+
+    .custom-navbar .navbar-brand img {
+        height: 60px; /* Adjust the logo size */
+        max-height: 100%; /* Ensure the logo is fully visible */
+
+    }
+    .custom-navbar .nav-item span {
+        color: white
+    }
+    .custom-navbar .navbar-brand img {
+        height: 100px;
+        max-height: 100%;
+        padding-left: 50px;
+    }
+    /* NavBar end */
+

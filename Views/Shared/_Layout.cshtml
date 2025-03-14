@@ -7,57 +7,34 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RecipeWebbApplication.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <header>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg custom-navbar">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/img/logo.png" alt="" width="45" height="45" class="d-inline-block align-top">
-
+                    <img src="~/img/logo.png" alt="Recipe Hub Logo" class="d-inline-block align-top">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-@*                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-action="Profile" asp-controller="Home"><i class="fas fa-user"></i> <span>Profile</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-controller="Recipes" asp-action="Index"><i class="fas fa-book"></i> <span>My Recipes</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                        </li> *@
-                        <li class="nav-item">
-                            <a class="nav-link" asp-action="Profile" asp-controller="Home">Profile</a>
+                            <a class="nav-link" asp-area="" asp-controller="Recipes" asp-action="RecipeDisplay"><i class="fas fa-list"></i> <span>All Recipes</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Recipes" asp-action="Index">My Recipes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Recipes" asp-action="RecipeDisplay">All Recipes</a>
-                        </li>
-@*                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                More
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Help</a></li>
-                                <li><a class="dropdown-item" href="#">Contact</a></li>
-                                @if (User.IsInRole("Admin"))
-                                {
-                                    <li> <a asp-controller="Admin" asp-action="Index">Admin Panel</a></li>
-                                }
-                            </ul>
-                        </li> *@
                     </ul>
                     <div class="d-flex">
-
+                        <partial name="_LoginPartial" />
                     </div>
-                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
@@ -100,3 +77,6 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+
+
