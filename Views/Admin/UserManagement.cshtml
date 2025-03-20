@@ -33,6 +33,8 @@
                         </td>
                         <td>
                             <a href="@Url.Action("AssignRole", "Admin", new { id = user.Id })" class="btn btn-sm btn-primary">Assign Role</a>
+                            <a href="@Url.Action("EditUser", "Admin", new { id = user.Id })" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="@Url.Action("DeleteUser", "Admin", new { id = user.Id })" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
                         </td>
                     </tr>
                 }

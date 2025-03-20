@@ -3,9 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using RecipeWebbApplication.Data;
 using RecipeWebbApplication.Data.Seeders;
 using RecipeWebbApplication.Models;
+using Microsoft.Extensions.Logging; // Add this namespace
 
 var builder = WebApplication.CreateBuilder(args);
-//Test
+
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -16,6 +17,11 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+// Configure logging
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
 
 var app = builder.Build();
 
@@ -40,9 +46,6 @@ using (var scope = app.Services.CreateScope())
 
     await AdminSeeder.SeedAdminUser(userManager, roleManager);
 }
-
-
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -69,6 +72,7 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
 // Method to ensure roles exist
 async Task EnsureRolesAsync(RoleManager<IdentityRole> roleManager)
 {
@@ -78,3 +82,4 @@ async Task EnsureRolesAsync(RoleManager<IdentityRole> roleManager)
         await roleManager.CreateAsync(new IdentityRole("User"));
     }
 }
+
