@@ -86,6 +86,40 @@
 
         <hr>
 
+        <!-- Add Review Form -->
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form asp-action="AddReview" method="post" class="mt-3">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@Model.Id" />
+                <div class="mb-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <select name="rating" class="form-select" required>
+                        <option value="">Select Rating</option>
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="reviewText" class="form-label">Review</label>
+    <textarea name="reviewText" class="form-control" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Review</button>
+            </form>
+        }
+        else
+        {
+            <p class="text-muted">Please <a href="/Identity/Account/Login">log in</a> to add a review.</p>
+        }
+
+
+
+
+
+        <hr>
+
         <!-- Comments -->
         <div class="mt-3">
             <h4>Comments</h4>
