@@ -25,6 +25,9 @@ namespace RecipeWebbApplication.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ShopItem>()
+                .Property(s => s.Price)
+                .HasPrecision(18, 2); // Example: Precision 18, Scale 2
 
             // ✅ Many-to-Many for Recipe ↔ Ingredients
             modelBuilder.Entity<RecipeIngredient>()
