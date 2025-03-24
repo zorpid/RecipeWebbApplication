@@ -1,0 +1,56 @@
+﻿@model IEnumerable<RecipeWebbApplication.Models.CartItem>
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<h2>Your Cart</h2>
+
+@if (!Model.Any())
+{
+    <p>Your cart is empty. Visit the <a asp-controller="Shop" asp-action="Index">product page</a> to add items.</p>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>Product</th>
+            <th>Price (each)</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ShopItem?.Name</td>
+                <td>$@item.ShopItem?.Price.ToString("0.00")</td>
+                <td>
+                    <!-- Form to update quantity for this item -->
+                    <form asp-controller="Cart" asp-action="Update" method="post" class="form-inline">
+                        <input type="hidden" name="cartItemId" value="@item.Id" />
+                        <input type="number" name="quantity" value="@item.Quantity" min="0" class="form-control" style="width:5em;" />
+                        <button type="submit" class="btn btn-secondary">Update</button>
+                    </form>
+                </td>
+                <td>$@((item.ShopItem?.Price ?? 0) * item.Quantity).ToString("0.00")</td>
+                <td>
+                    <!-- Separate form to remove item -->
+                    <form asp-controller="Cart" asp-action="Remove" method="post">
+                        <input type="hidden" name="cartItemId" value="@item.Id" />
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <p>
+        <strong>Total: </strong>
+        $@Model.Sum(item => (item.ShopItem?.Price ?? 0) * item.Quantity).ToString("0.00")
+    </p>
+
+    <!-- Checkout button -->
+    <form asp-controller="Cart" asp-action="Checkout" method="post">
+        <button type="submit" class="btn btn-success">Proceed to Checkout</button>
+    </form>
+}

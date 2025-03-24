@@ -6,6 +6,7 @@ using RecipeWebbApplication.Models;
 using Microsoft.Extensions.Logging; // Add this namespace
 using Stripe;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,6 +19,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
 
 // Configure logging
 builder.Logging.ClearProviders();

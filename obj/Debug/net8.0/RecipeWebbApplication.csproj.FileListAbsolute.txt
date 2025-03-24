@@ -45,7 +45,6 @@ C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\Microsoft.I
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
-C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\System.ClientModel.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\System.CodeDom.dll
@@ -55,13 +54,10 @@ C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\System.Comp
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\System.Composition.Runtime.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\System.Composition.TypedParts.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
-C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\System.Drawing.Common.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\System.Memory.Data.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\System.Security.Permissions.dll
-C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\System.Windows.Extensions.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -267,10 +263,6 @@ C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\ru\Microsof
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
-C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
-C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\Microsoft.Data.Sqlite.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Sqlite.dll
 C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\SQLitePCLRaw.batteries_v2.dll
@@ -892,3 +884,4 @@ C:\Users\zorpi\Desktop\ReceptApp\RecipeWebbApplication\obj\Debug\net8.0\refint\R
 C:\Users\zorpi\Desktop\ReceptApp\RecipeWebbApplication\obj\Debug\net8.0\RecipeWebbApplication.pdb
 C:\Users\zorpi\Desktop\ReceptApp\RecipeWebbApplication\obj\Debug\net8.0\RecipeWebbApplication.genruntimeconfig.cache
 C:\Users\zorpi\Desktop\ReceptApp\RecipeWebbApplication\obj\Debug\net8.0\ref\RecipeWebbApplication.dll
+C:\Users\Rezz\Desktop\C#skola\RecipeWebbApplication\bin\Debug\net8.0\Stripe.net.dll

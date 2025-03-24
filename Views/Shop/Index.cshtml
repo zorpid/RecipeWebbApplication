@@ -1,0 +1,27 @@
+﻿@model IEnumerable<RecipeWebbApplication.Models.ShopItem>
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2>Products</h2>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Price (USD)</th>
+        <th></th>
+    </tr>
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.Name</td>
+            <td>$@product.Price.ToString("0.00")</td>
+            <td>
+                <!-- Form to add product to cart -->
+                <form asp-controller="Cart" asp-action="Add" method="post" style="display:inline;">
+                    <input type="hidden" name="productId" value="@product.Id" />
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>

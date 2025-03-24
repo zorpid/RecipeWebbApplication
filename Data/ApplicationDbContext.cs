@@ -19,6 +19,8 @@ namespace RecipeWebbApplication.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<RecipeReview> RecipeReviews { get; set; }
         public DbSet<RecipeComment> RecipeComments { get; set; }
+        public DbSet<ShopItem> ShopItems { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -95,6 +97,11 @@ namespace RecipeWebbApplication.Data
                 new Tag { Id = 5, Name = "Spicy" },
                 new Tag { Id = 6, Name = "Halal" }
             );
+            modelBuilder.Entity<ShopItem>().HasData(
+       new ShopItem { Id = 1, Name = "Sample Product A", Price = 19.99m },
+       new ShopItem { Id = 2, Name = "Sample Product B", Price = 5.49m },
+       new ShopItem { Id = 3, Name = "Sample Product C", Price = 12.00m }
+   );
 
 
 

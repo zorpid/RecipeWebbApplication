@@ -1,12 +1,4 @@
-﻿<!-- Views/Home/Index.cshtml -->
-@{
-    ViewData["Title"] = "Home Page";
-}
-
-<h1>Welcome to the Recipe Web Application</h1>
-
-<!-- Views/Cart/Index.cshtml -->
-@model IEnumerable<RecipeWebbApplication.Models.CartItem>
+﻿@model IEnumerable<RecipeWebbApplication.Models.CartItem>
 
 <h2>Shopping Cart</h2>
 
@@ -23,29 +15,15 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.Name</td>
-                <td>@item.Price</td>
+                <td>@item.ShopItem?.Name</td>
+                <td>@item.ShopItem?.Price</td>
                 <td>@item.Quantity</td>
-                <td>@(item.Price * item.Quantity)</td>
+                <td>@(item.ShopItem?.Price * item.Quantity)</td>
             </tr>
         }
     </tbody>
 </table>
 
-<p>Total: @Model.Sum(item => item.Price * item.Quantity)</p>
+<p>Total: @Model.Sum(item => item.ShopItem?.Price * item.Quantity)</p>
 
 <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary">Proceed to Checkout</a>
-
-<!-- Views/Checkout/Index.cshtml -->
-@{
-    ViewData["Title"] = "Checkout";
-}
-
-<h2>Checkout</h2>
-
-<form method="post" asp-action="CreateSession">
-    <div>
-        <label>Total: @Model.Sum(item => item.Price * item.Quantity)</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Pay with Stripe</button>
-</form>
