@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Q3KCL4UDr1w5vEp3qg0njnHMwr9wdX+tAb2ovL3IVek=",
+  "Hash": "IK+eSqfVEL/qPJ+VOEHZKxQxCe4PbeHc1QOqlkj19wc=",
   "Source": "RecipeWebbApplication",
   "BasePath": "_content/RecipeWebbApplication",
   "Mode": "Default",
@@ -1333,8 +1333,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "46v8mxk30n",
-      "Integrity": "zEld0BcjtphpTLO3v0kS8mHKa08DsaEqnSF2UvGm1dg=",
+      "Fingerprint": "scnbo6xstq",
+      "Integrity": "/EpE0hInRjJpgxCfMiZIYbfH0r5BGd1yTSnD2iDJXw8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -2644,51 +2644,6 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.46v8mxk30n.css",
-      "AssetFile": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\wwwroot\\css\\site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "3332"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"zEld0BcjtphpTLO3v0kS8mHKa08DsaEqnSF2UvGm1dg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 07:45:41 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "46v8mxk30n"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-zEld0BcjtphpTLO3v0kS8mHKa08DsaEqnSF2UvGm1dg="
-        }
-      ]
-    },
-    {
       "Route": "css/site.css",
       "AssetFile": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\wwwroot\\css\\site.css",
       "Selectors": [],
@@ -2699,7 +2654,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3332"
+          "Value": "3330"
         },
         {
           "Name": "Content-Type",
@@ -2707,11 +2662,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zEld0BcjtphpTLO3v0kS8mHKa08DsaEqnSF2UvGm1dg=\""
+          "Value": "\"/EpE0hInRjJpgxCfMiZIYbfH0r5BGd1yTSnD2iDJXw8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 17 Mar 2025 07:45:41 GMT"
+          "Value": "Sun, 23 Mar 2025 15:14:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2721,7 +2676,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-zEld0BcjtphpTLO3v0kS8mHKa08DsaEqnSF2UvGm1dg="
+          "Value": "sha256-/EpE0hInRjJpgxCfMiZIYbfH0r5BGd1yTSnD2iDJXw8="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.scnbo6xstq.css",
+      "AssetFile": "C:\\Users\\Johan\\source\\repos\\zorpid\\RecipeWebbApplication\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3330"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/EpE0hInRjJpgxCfMiZIYbfH0r5BGd1yTSnD2iDJXw8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 23 Mar 2025 15:14:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "scnbo6xstq"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/EpE0hInRjJpgxCfMiZIYbfH0r5BGd1yTSnD2iDJXw8="
         }
       ]
     },

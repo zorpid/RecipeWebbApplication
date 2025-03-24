@@ -4,6 +4,7 @@ using RecipeWebbApplication.Data;
 using RecipeWebbApplication.Data.Seeders;
 using RecipeWebbApplication.Models;
 using Microsoft.Extensions.Logging; // Add this namespace
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,9 @@ builder.Logging.AddConsole();
 builder.Logging.AddDebug();
 
 var app = builder.Build();
+
+// Configure Stripe
+StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 
 // Roles seeder for the application
 using (var scope = app.Services.CreateScope())

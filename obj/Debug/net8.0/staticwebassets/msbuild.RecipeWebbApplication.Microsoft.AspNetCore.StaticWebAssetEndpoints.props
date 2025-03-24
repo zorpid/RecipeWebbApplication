@@ -1,16 +1,16 @@
 ﻿<Project>
   <ItemGroup>
-    <StaticWebAssetEndpoint Include="_content/RecipeWebbApplication/css/site.46v8mxk30n.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"46v8mxk30n"},{"Name":"integrity","Value":"sha256-zEld0BcjtphpTLO3v0kS8mHKa08DsaEqnSF2UvGm1dg="},{"Name":"label","Value":"_content/RecipeWebbApplication/css/site.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3332"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022zEld0BcjtphpTLO3v0kS8mHKa08DsaEqnSF2UvGm1dg=\u0022"},{"Name":"Last-Modified","Value":"Mon, 17 Mar 2025 07:45:41 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/RecipeWebbApplication/css/site.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-zEld0BcjtphpTLO3v0kS8mHKa08DsaEqnSF2UvGm1dg="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"3332"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022zEld0BcjtphpTLO3v0kS8mHKa08DsaEqnSF2UvGm1dg=\u0022"},{"Name":"Last-Modified","Value":"Mon, 17 Mar 2025 07:45:41 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-/EpE0hInRjJpgxCfMiZIYbfH0r5BGd1yTSnD2iDJXw8="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"3330"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022/EpE0hInRjJpgxCfMiZIYbfH0r5BGd1yTSnD2iDJXw8=\u0022"},{"Name":"Last-Modified","Value":"Sun, 23 Mar 2025 15:14:34 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/RecipeWebbApplication/css/site.scnbo6xstq.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"scnbo6xstq"},{"Name":"integrity","Value":"sha256-/EpE0hInRjJpgxCfMiZIYbfH0r5BGd1yTSnD2iDJXw8="},{"Name":"label","Value":"_content/RecipeWebbApplication/css/site.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3330"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022/EpE0hInRjJpgxCfMiZIYbfH0r5BGd1yTSnD2iDJXw8=\u0022"},{"Name":"Last-Modified","Value":"Sun, 23 Mar 2025 15:14:34 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/RecipeWebbApplication/favicon.61n19gt1b8.ico">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</AssetFile>
