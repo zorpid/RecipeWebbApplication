@@ -87,6 +87,20 @@ namespace RecipeWebbApplication.Controllers
 
 
         }
+        public async Task<IActionResult> CartIcon()
+        {
+            int cartCount = 0;
+
+            if (User.Identity?.IsAuthenticated ?? false)
+            {
+                var userId = _userManager.GetUserId(User);
+                cartCount = await _context.CartItems
+                    .Where(ci => ci.UserId == userId)
+                    .SumAsync(ci => ci.Quantity);
+            }
+
+            return PartialView("_CartIcon", cartCount);
+        }
 
 
     }
