@@ -8,21 +8,25 @@
         var fullName = UserManager.GetUserAsync(User).Result?.FullName;
         var displayName = string.IsNullOrEmpty(fullName) ? User.Identity?.Name : fullName;
     <li class="nav-item">
-            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @displayName!</a>
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" style="white-space: nowrap;">Hello @displayName!</a>
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button  type="submit" class="nav-link btn btn-link text-light">Logout</button>
         </form>
     </li>
+
+                                <li class="nav-item">
+                            <a class="nav-link" asp-action="Profile" asp-controller="Home"><i class="fas fa-user"></i></a>
+                        </li>
+
+
+
 }
 else
 {
     <li class="nav-item">
-        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login"><i class="fas fa-user"></i></a>
     </li>
 }
 </ul>
